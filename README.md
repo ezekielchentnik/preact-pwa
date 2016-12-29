@@ -8,11 +8,11 @@ Live version: [https://sfpwa-154005.appspot.com](https://sfpwa-154005.appspot.co
 
 ## bundle sizes & perf
 ```
-  Bundle Size:            27.55 KB, Gzipped size: 9.79 KB
-  First visual change:    226 ms
-  Last visual change:     301 ms
-  Speed Index:            297.0
-  Perceptual Speed Index: 280.8
+Bundle Size:            27.55 KB, Gzipped size: 9.79 KB
+First visual change:    226 ms
+Last visual change:     301 ms
+Speed Index:            297.0
+Perceptual Speed Index: 280.8
 ```
 we can shave off ~10 KB, ~3kb Gzipped by pruning `preact-redux` & manually connecting
 
