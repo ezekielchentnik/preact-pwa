@@ -6,9 +6,11 @@ Features universal rendering, redux, state-driven routing, preact, & service wor
 
 Live version: [https://sfpwa-154005.appspot.com](https://sfpwa-154005.appspot.com)
 
-## bundle sizes
+## bundle sizes & perf
 
-...
+bundle.js: 27.55 KB, Gzipped size: 9.79 KB
+
+we can shave off ~10 KB, ~3kb Gzipped by pruning `preact-redux` & manually connecting
 
 ## Features
 
@@ -36,7 +38,7 @@ Make sure that [yarn](https://github.com/yarnpkg/yarn) is installed.
 First, clone the repo
 
 ```bash
-$ git clone https://github.com/ezekielchentnik/sfpwa
+$ git clone https://github.com/ezekielchentnik/preact-pwa
 ```
 
 Then, install all dependencies:
@@ -57,4 +59,6 @@ Or, to run the project for production:
 $ yarn start
 ```
 
-MIT Licensed
+License
+
+MIT
