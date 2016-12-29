@@ -1,0 +1,41 @@
+.Nav{
+  background-color: magenta;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .inner {
+    max-width: 800px;
+    box-sizing: border-box;
+    margin: 0px auto;
+    padding: 15px 30px;
+
+  a {
+    color: rgba(255, 255, 255, .8);
+    text-decoration: none;
+    line-height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 300;
+    margin-right: 1.8em;
+    &:hover {
+      color: #fff;
+    }
+    &.active {
+      color: #fff;
+      font-weight: 800;
+      text-decoration: underline;
+    }
+    &:nth-child(6) {
+      margin-right: 0;
+    }
+  }
+}
+
+.logo {
+  text-decoration: none;
+}
+
+}
