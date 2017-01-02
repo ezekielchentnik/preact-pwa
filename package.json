@@ -1,5 +1,5 @@
 {
-  "name": "sfpwa",
+  "name": "preact-pwa",
   "version": "0.0.0",
   "description": "Super fast progressive web app",
   "scripts": {
