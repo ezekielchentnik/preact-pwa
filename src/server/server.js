@@ -1,6 +1,6 @@
 import app from './app'
 
-const server = app.listen(8080, () => {
+const server = app.listen(process.env.PORT || 5000, () => {
   console.log(`[server] micro-app on http://localhost:${server.address().port} - ${app.settings.env}`)
 })
 
