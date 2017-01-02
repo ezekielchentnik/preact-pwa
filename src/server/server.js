@@ -1,7 +1,7 @@
 import app from './app'
 
-const server = app.listen(process.env.PORT || 5000, () => {
-  console.log(`[server] micro-app on http://localhost:${server.address().port} - ${app.settings.env}`)
+const server = app.listen(process.env.PORT || 8080, () => {
+  console.log(`[server] app on http://localhost:${server.address().port} - ${app.settings.env}`)
 })
 
 process.on('SIGTERM', () => {
