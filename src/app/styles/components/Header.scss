@@ -1,0 +1,33 @@
+body {
+	padding-top: 60px;
+	font: 14px/1.21 'Helvetica Neue',arial;
+}
+
+.Header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 56px;
+	background: magenta;
+	line-height: 56px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+	.Nav {
+		display: inline-block;
+		padding: 0 10px;
+	}
+	.Nav a {
+    color: #fff;
+		display: inline-block;
+		padding: 0 10px;
+		font-size: 18px;
+		font-weight: 300;
+		letter-spacing: 0.05em;
+		text-decoration: none;
+		cursor: pointer;
+		&:hover {
+			background-color: rgba(255,255,255,0.2);
+		}
+	}
+}

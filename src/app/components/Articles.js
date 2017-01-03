@@ -11,7 +11,7 @@ const Article = ({ article }) => (
 )
 
 const Articles = ({ articles }) => (
-  <ul className='content Articles'>
+  <ul className='Articles'>
     {articles.map((article, i) => (
       <Article article={article} key={i} />
     ))}
