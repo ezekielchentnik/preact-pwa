@@ -1,4 +1,4 @@
-import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
+import { h } from 'preact' // eslint-disable-line no-unused-vars
 import { connect } from 'preact-redux'
 import { getArticles } from './../store/selectors/articles'
 

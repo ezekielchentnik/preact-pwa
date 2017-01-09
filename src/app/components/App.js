@@ -1,4 +1,4 @@
-import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
+import { h } from 'preact' // eslint-disable-line no-unused-vars
 import { Provider, connect } from 'preact-redux' // introduces 2.9kb on gzipped bundle, todo: barf, fix
 import Articles from './Articles'
 import About from './About'

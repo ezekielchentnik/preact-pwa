@@ -1,4 +1,4 @@
-import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
+import { h } from 'preact' // eslint-disable-line no-unused-vars
 import render from 'preact-render-to-string'
 import createStore from './../../app/store/createStore'
 import App from './../../app/components/App'
@@ -9,7 +9,7 @@ import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
 import { fetchInitialState, updateLocation } from './../../app/store/actions/ActionCreators'
 
-const js = `/public/bundle-${version}.js`
+const jsUrl = `/public/bundle-${version}.js`
 const inlineCss = readFileSync(`./build/public/bundle-${version}.css`)
 // const inlineJs = readFileSync(`./build/public/bundle-${version}.js`)
 
@@ -24,7 +24,7 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
   <body>
     <div id="app">${html}</div>
     <script>window.__STATE__=${JSON.stringify(state)}</script>
-    <script async src="${js}"></script>
+    <script async src="${jsUrl}"></script>
   </body>
 </html>`
 
@@ -40,8 +40,7 @@ export default Router().get('/', (req, res) => {
   const store = createStore(createPreloadedState(), createServerFetch())
   store.dispatch(updateLocation(req.originalUrl))
   res.set({
-    'Link': `<https://api.nytimes.com>; rel=dns-prefetch`,
-    'Cache-Control': 'public, max-age=31536000'
+    'Link': `<https://api.nytimes.com>; rel=dns-prefetch`
   })
   withTimeout(
     store.dispatch(fetchInitialState()),

@@ -31,6 +31,7 @@
     "rollup-plugin-node-resolve": "2.0.0",
     "rollup-plugin-replace": "1.1.1",
     "rollup-plugin-uglify": "1.0.1",
+    "rollup-plugin-url": "0.1.2",
     "standard": "8.6.0",
     "sw-precache": "4.2.3",
     "tachyons-sass": "4.6.2"
