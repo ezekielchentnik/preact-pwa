@@ -3,8 +3,6 @@ import { Provider, connect } from 'preact-redux' // introduces 2.9kb on gzipped 
 import Header from './Header'
 import Landings from './Landings'
 import About from './About'
-import Map from './Map'
-import Facts from './Facts'
 import Landing from './Landing'
 import Splash from './Splash'
 
@@ -15,10 +13,6 @@ const Content = ({ location }) => { // todo: make routing better
     return <Landings />
   } else if(location.url === '/about'){
     return <About />
-  } else if (location.url === '/facts') {
-    return <Facts />
-  } else if (location.url === '/map') {
-    return <Map />
   } else {
     return <Splash />
   }

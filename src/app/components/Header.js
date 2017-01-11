@@ -10,12 +10,17 @@ export default connect(
   })
 )(({ _updateLocation }) => (
   <header className='Header'>
+    <input id="click" type="checkbox"/>
+    <div className="toolbar"></div>
+    <label className="ic-menu" for="click">
+      <div className="i"></div>
+      <div className="i"></div>
+      <div className="i"></div>
+    </label>
     <nav className='Nav'>
-      <Link href='/' onClick={(e) => _updateLocation('/')}>Home</Link>
-      <Link href='/landings' onClick={(e) => _updateLocation('/landings')}>Landings</Link>
-      <Link href='/map' onClick={(e) => _updateLocation('/map')}>Map</Link>
-      <Link href='/facts' onClick={(e) => _updateLocation('/facts')}>Facts</Link>
-      <Link href='/about' onClick={(e) => _updateLocation('/about')}>About</Link>
+      <Link className='item' href='/' onClick={(e) => _updateLocation('/')}>Home</Link>
+      <Link className='item' href='/landings' onClick={(e) => _updateLocation('/landings')}>Landings</Link>
+      <Link className='item' href='/about' onClick={(e) => _updateLocation('/about')}>About</Link>
     </nav>
   </header>
 ))

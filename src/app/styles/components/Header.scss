@@ -4,30 +4,83 @@ body {
 }
 
 .Header {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 56px;
-	background: magenta;
-	line-height: 56px;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 
-	.Nav {
-		display: inline-block;
-		padding: 0 10px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	min-height: 65px;
+
+	#click{
+		display: none;
 	}
-	.Nav a {
+
+	.toolbar{
+		position: fixed;
+    top: 0;
+    display: block;
+    height: 65px;
+    width: 100%;
+    background: #f0f;
+    -webkit-transition: all .5s cubic-bezier(.87,-.2,.19,1.2) .2s;
+    transition: all .5s cubic-bezier(.87,-.2,.19,1.2) .2s;
+    z-index: 1;
+    overflow: hidden;
+    text-align: center;
+    line-height: 65px;
     color: #fff;
-		display: inline-block;
-		padding: 0 10px;
-		font-size: 18px;
-		font-weight: 300;
-		letter-spacing: 0.05em;
-		text-decoration: none;
-		cursor: pointer;
-		&:hover {
-			background-color: rgba(255,255,255,0.2);
+    font-size: 1.5em;
+    font-weight: bold;
+	}
+
+	.ic-menu{
+		display: block;
+    position: relative;
+    height: 24px;
+    width: 24px;
+    top: 24px;
+    left: 16px;
+    cursor: pointer;
+    z-index: 3;
+
+			.i{
+				margin-bottom: 4px;
+				width: 100%;
+				height: 3px;
+				background: #fff;
+			}
 		}
+
+	.Nav{
+		position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all .5s cubic-bezier(.87,-.2,.19,1.2) .2s;
+    transition: all .5s cubic-bezier(.87,-.2,.19,1.2) .2s;
+    top: 0;
+    color: #fff;
+    margin: 100px 0;
+		.item{
+			padding: 10px 0;
+	    position: relative;
+	    font-size: 1.5em;
+	    line-height: 30px;
+	    color: #fff;
+	    display: block;
+	    text-decoration: none;
+
+		}
+	}
+
+	#click:checked ~ .toolbar{
+		height: 250%;
+	}
+
+	#click:checked ~ .Nav{
+		transform: scale(1);
+		opacity: 1;
 	}
 }
