@@ -3219,6 +3219,12 @@ source-map-support@^0.4.0:
   dependencies:
     source-map "^0.5.3"
 
+source-map-support@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.8.tgz#4871918d8a3af07289182e974e32844327b2e98b"
+  dependencies:
+    source-map "^0.5.3"
+
 source-map-url@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/source-map-url/-/source-map-url-0.3.0.tgz#7ecaf13b57bcd09da8a40c5d269db33799d4aaf9"

@@ -1,3 +1,5 @@
+require('source-map-support').install()
+import 'isomorphic-fetch'
 import app from './app'
 
 const server = app.listen(process.env.PORT || 5000, () => {

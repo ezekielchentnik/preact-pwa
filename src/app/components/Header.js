@@ -11,8 +11,10 @@ export default connect(
 )(({ _updateLocation }) => (
   <header className='Header'>
     <nav className='Nav'>
-      <Link href='/' onClick={(e) => _updateLocation('/')} className='logo'>Home</Link>
-      <Link href='/' onClick={(e) => _updateLocation('/')}>Top</Link>
+      <Link href='/' onClick={(e) => _updateLocation('/')}>Home</Link>
+      <Link href='/landings' onClick={(e) => _updateLocation('/landings')}>Landings</Link>
+      <Link href='/map' onClick={(e) => _updateLocation('/map')}>Map</Link>
+      <Link href='/facts' onClick={(e) => _updateLocation('/facts')}>Facts</Link>
       <Link href='/about' onClick={(e) => _updateLocation('/about')}>About</Link>
     </nav>
   </header>

@@ -1,5 +1,5 @@
 export const initialState = {
-  title: 'sfpwa',
+  title: 'Meteors',
   uuid: 'no_user'
 }
 

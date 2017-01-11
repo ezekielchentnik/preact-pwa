@@ -33,6 +33,7 @@
     "rollup-plugin-replace": "1.1.1",
     "rollup-plugin-uglify": "1.0.1",
     "rollup-plugin-url": "0.1.2",
+    "source-map-support": "0.4.8",
     "standard": "8.6.0",
     "sw-precache": "4.3.0",
     "tachyons-sass": "4.7.0"

@@ -25,7 +25,7 @@ export default (state = initialState, { type, payload, meta }) => {
       })
     case FETCH_ARTICLES_SUCCESS:
       return Object.assign({}, state, {
-        items: payload.results,
+        items: payload,
         hasFetched: true,
         isFetching: false,
         lastUpdated: meta.receivedAt
