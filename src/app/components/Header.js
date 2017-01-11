@@ -11,7 +11,7 @@ export default connect(
 )(({ _updateLocation }) => (
   <header className='Header'>
     <input id="click" type="checkbox"/>
-    <div className="toolbar"></div>
+    <div className="toolbar">Meteors</div>
     <label className="ic-menu" for="click">
       <div className="i"></div>
       <div className="i"></div>

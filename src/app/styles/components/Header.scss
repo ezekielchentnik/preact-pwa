@@ -37,10 +37,11 @@ body {
     position: relative;
     height: 24px;
     width: 24px;
-    top: 24px;
-    left: 16px;
+    top: 22px;
     cursor: pointer;
     z-index: 3;
+    float: right;
+    right: 20px;
 
 			.i{
 				margin-bottom: 4px;
