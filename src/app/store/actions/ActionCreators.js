@@ -1,4 +1,4 @@
-import { FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR, UPDATE_LOCATION } from './ActionTypes'
+import { FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR, UPDATE_LOCATION, TOGGLE_MENU } from './ActionTypes'
 import { getShouldFetchArticles, getArticles } from './../selectors/articles'
 
 const TOPSTORIES_API_URL = 'https://data.nasa.gov/resource/y77d-th95.json?$limit=1000&$$app_token=sSFakym1uNFEBkIkqUPln1k6Z&$offset=0'
@@ -35,3 +35,7 @@ export const updateLocation = (newURL) => (dispatch, getState) => {
     } // todo: parse url
   })
 }
+
+export const toggleMenu = () => ({
+  type: TOGGLE_MENU
+})
