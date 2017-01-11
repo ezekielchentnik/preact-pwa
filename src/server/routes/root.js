@@ -8,11 +8,12 @@ import createServerFetch from './../../app/utils/createServerFetch'
 import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
 import { fetchInitialState, updateLocation } from './../../app/store/actions/ActionCreators'
+import assets from './../../../build/assets'
 
-const jsUrl = `/public/bundle-${version}.js`
-const inlineCss = readFileSync(`./build/public/bundle-${version}.css`)
-// const inlineJs = readFileSync(`./build/public/bundle-${version}.js`)
-
+const jsUrl = `/public/${assets['bundle.js']}`
+const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
+// const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
+// todo: <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
@@ -48,4 +49,3 @@ export default Router().get('/', (req, res) => {
   ).then(() => res.send(createAppShell(store)))
   .catch(() => res.send(createAppShell(store)))
 })
-// todo: add <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>

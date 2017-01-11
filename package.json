@@ -9,12 +9,13 @@
   },
   "dependencies": {
     "compression": "1.6.2",
-    "cssnano": "3.9.1",
+    "cssnano": "3.10.0",
     "express": "4.14.0",
     "isomorphic-fetch": "2.2.1",
-    "node-sass": "4.1.1",
+    "node-rev": "2.0.0",
+    "node-sass": "4.2.0",
     "nodemon": "1.11.0",
-    "optimize-js": "1.0.2",
+    "optimize-js": "1.0.3",
     "preact": "7.1.0",
     "preact-redux": "1.2.0",
     "preact-render-to-string": "3.3.0",
@@ -23,7 +24,7 @@
     "redux-reporter": "0.1.0",
     "redux-thunk": "2.1.0",
     "reselect": "2.5.4",
-    "rollup": "0.39.2",
+    "rollup": "0.41.1",
     "rollup-plugin-buble": "0.15.0",
     "rollup-plugin-commonjs": "7.0.0",
     "rollup-plugin-json": "2.1.0",
@@ -33,8 +34,8 @@
     "rollup-plugin-uglify": "1.0.1",
     "rollup-plugin-url": "0.1.2",
     "standard": "8.6.0",
-    "sw-precache": "4.2.3",
-    "tachyons-sass": "4.6.2"
+    "sw-precache": "4.3.0",
+    "tachyons-sass": "4.7.0"
   },
   "engines": {
     "node": ">=6.9.1"
