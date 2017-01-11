@@ -18,7 +18,9 @@ window.addEventListener('popstate', (e) => {
 
 store.subscribe(() => {
   const { location } = store.getState()
-  window.history.pushState({}, '', location.url)
+  if(window.location.pathname + window.location.search !== location.url){
+    window.history.pushState({}, '', location.url)
+  }
 })
 store.dispatch(updateLocation(window.location.pathname + window.location.search))
 
