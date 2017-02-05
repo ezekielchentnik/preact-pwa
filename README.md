@@ -2,7 +2,7 @@
 
 A `Super fast progressive web app` with a small footprint & minimal dependancies.  
 
-Features universal rendering, redux, state-driven routing, preact, & service workers.  Crunched & optimized with rollup, buble, optimize-js, & purify-css.  Consumes the [New York Times API](http://developer.nytimes.com/)
+Features universal rendering, redux, state-driven routing, preact, & service workers.  Crunched & optimized with rollup, buble, optimize-js, & purify-css.
 
 Live version: [https://sfpwa-154005.appspot.com](https://sfpwa-154005.appspot.com)
 
