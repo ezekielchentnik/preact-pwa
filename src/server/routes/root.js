@@ -3,7 +3,6 @@ import render from 'preact-render-to-string'
 import createStore from './../../app/store/createStore'
 import App from './../../app/components/App'
 import { Router } from 'express'
-import { version } from './../../../package'
 import createServerFetch from './../../app/utils/createServerFetch'
 import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
@@ -20,6 +19,7 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preload" href="${jsUrl}" as="script">
     <style>${inlineCss}</style>
   </head>
   <body>
