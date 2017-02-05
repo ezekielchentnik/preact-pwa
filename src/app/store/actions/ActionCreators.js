@@ -1,5 +1,6 @@
 import { FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR, UPDATE_LOCATION, TOGGLE_MENU } from './ActionTypes'
 import { getShouldFetchArticles, getArticles } from './../selectors/articles'
+import { getCurrentUrl } from './../selectors/meta'
 
 const TOPSTORIES_API_URL = 'https://data.nasa.gov/resource/y77d-th95.json?$limit=1000&$$app_token=sSFakym1uNFEBkIkqUPln1k6Z&$offset=0'
 
@@ -24,14 +25,13 @@ export const fetchInitialState = () => (dispatch) => Promise.all([
 ])
 
 export const updateLocation = (newURL) => (dispatch, getState) => {
-  const { location } = getState()
-  if (newURL === location.url) {
+  if (newURL === getCurrentUrl(getState())) {
     return
   }
   dispatch({
     type: UPDATE_LOCATION,
     payload: {
-      url: newURL
+      currentUrl: newURL
     } // todo: parse url
   })
 }

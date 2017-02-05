@@ -4,12 +4,11 @@ export default (callback) => {
   const isGoodBrowser = (
     'fetch' in window &&
     'Promise' in window &&
-    'assign' in Object &&
-    'keys' in Object
+    'assign' in Object
   )
-  if (!isGoodBrowser) {
-    loadScript('/public/polyfills.min.js', callback)
-  } else {
+  if (isGoodBrowser) {
     callback()
+  } else {
+    loadScript('/public/public/polyfills.min.js', callback)
   }
 }

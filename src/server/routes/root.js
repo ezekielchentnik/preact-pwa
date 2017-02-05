@@ -39,13 +39,14 @@ const createAppShell = (store) => {
 
 export default Router().get('/', (req, res) => {
   const store = createStore(createPreloadedState(), createServerFetch())
-  store.dispatch(updateLocation(req.originalUrl))
+  store.dispatch(updateLocation(req.originalUrl)) // todo: sanitize
   res.set({
     'Link': `<https://api.nytimes.com>; rel=dns-prefetch`
   })
   withTimeout(
     store.dispatch(fetchInitialState()),
     50 // adjust for optimal threshold, ideally our services should be super fast
-  ).then(() => res.send(createAppShell(store)))
-  .catch(() => res.send(createAppShell(store)))
+  )
+  .catch((err) => console.log(err))
+  .then(() => res.send(createAppShell(store)))
 })

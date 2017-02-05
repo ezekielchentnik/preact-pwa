@@ -8,11 +8,10 @@ const replace = require('rollup-plugin-replace')
 const uglify = require('rollup-plugin-uglify')
 const nodeResolve = require('rollup-plugin-node-resolve')
 const url = require('rollup-plugin-url')
-const cssnano = require('cssnano')
+const cssnano = require('cssnano').process
 const purifycss = require('purify-css')
 const optimizeJs = require('optimize-js')
 const { name, version, dependencies } = require('./package')
-const uglifyOptions = require('./uglify')
 const swPrecache = require('sw-precache')
 const nodeRev = require('node-rev').default
 const _exec = require('child_process').exec
@@ -23,15 +22,13 @@ const promisify = (ctx, func = ctx) => (...args) => {
     func.apply(ctx, [...args, (err, result) => err ? reject(err) : resolve(result)])
   })
 }
-
+let clientCache, serverCache
 const writeFile = promisify(fs.writeFile)
 const sass = promisify(_sass.render)
 const exec = promisify(_exec)
-const del = (dir) => exec(`rm -rf ${dir}`)
-const mkdirp = (dir) => exec(`mkdir -p ${dir}`)
-const copy = (from, to) => exec(`cp ${from} ${to}`)
 
 const server = () => rollup({
+  cache: serverCache,
   entry: 'src/server/server.js',
   external,
   plugins: [
@@ -40,9 +37,13 @@ const server = () => rollup({
     commonjs({ extensions: [ '.js', '.json' ] }),
     buble({ jsx: 'h' })
   ]
-}).then(({ write }) => write({ sourceMap: true, format: 'cjs', dest: `build/server.js` }))
+}).then((bundle) => {
+  serverCache = bundle
+  return bundle.write({ sourceMap: true, format: 'cjs', dest: `build/server.js` })
+})
 
 const client = () => rollup({
+  cache: clientCache,
   entry: 'src/app/entry.js',
   context: 'window',
   plugins: [
@@ -51,10 +52,13 @@ const client = () => rollup({
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
     images,
     buble({ jsx: 'h' }),
-    uglify(uglifyOptions)
+    uglify()
   ]
 })
-.then(({ generate }) => generate({ sourceMap: true, format: 'iife' }))
+.then((bundle) => {
+  clientCache = bundle
+  return bundle.generate({ sourceMap: true, format: 'iife' })
+})
 .then(({ code, map }) => Promise.all([
   writeFile(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/public/bundle.js.map`),
   writeFile(`build/public/bundle.js.map`, map.toString()),
@@ -63,7 +67,7 @@ const client = () => rollup({
 
 const css = () => sass({ file: `src/app/styles/entry.scss` })
   .then(({ css }) => purifycss(['src/app/components/**/*.js'], css.toString()))
-  .then((purified) => cssnano.process(purified, { autoprefixer: { add: true } }))
+  .then((purified) => cssnano(purified, { autoprefixer: { add: true } }))
   .then(({ css }) => writeFile(`build/public/bundle.css`, css))
 
 const sw = () => swPrecache.write('build/public/sw.js', {
@@ -72,7 +76,7 @@ const sw = () => swPrecache.write('build/public/sw.js', {
   replacePrefix: `/public`,
   stripPrefix: './build/public',
   runtimeCaching: [{
-    urlPattern: /\w*woff|png\b/, // todo: tweak patterns/strategies for content
+    urlPattern: /\w*woff|JPG\b/, // todo: tweak pattern to dedupe fonts
     handler: 'cacheFirst'
   }]
 })
@@ -84,13 +88,8 @@ const rev = () => Promise.resolve().then(() => nodeRev({
   hash: true
 }))
 
-const wipe = () => del('./build').then(() => mkdirp('./build/public'))
-const polyfills = () => copy('src/app/utils/polyfills.min.js', `build/public/`)
-
-const build = () => wipe()
-  .then(() => Promise.all([ client(), css(), polyfills() ]))
-  .then(() => rev()) // outputs asset.json, server needs it
-  .then(() => Promise.all([ server(), sw() ]))
+const clean = () => exec('rm -rf ./build && mkdir -p ./build/public')
+const polyfills = () => exec(`cp src/app/utils/polyfills.min.js build/public/`)
 
 const tasks = new Map()
 const run = (task) => {
@@ -100,6 +99,18 @@ const run = (task) => {
   }, (err) => console.error(err.stack))
 }
 
-tasks.set('build', build)
+tasks.set('client', client)
+tasks.set('css', css)
+tasks.set('polyfills', polyfills)
+tasks.set('clean', clean)
+tasks.set('rev', rev)
+tasks.set('sw', sw)
+tasks.set('server', server)
+tasks.set('build', () =>
+  run('clean')
+  .then(() => Promise.all([run('client'), run('css'), run('polyfills')]))
+  .then(() => run('rev'))
+  .then(() => Promise.all([run('server'), run('sw')]))
+)
 
 run(/^\w/.test(process.argv[2] || '') ? process.argv[2] : 'build')
