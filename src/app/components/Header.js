@@ -22,10 +22,10 @@ const Header = ({ _updateLocation, _openMenu, _closeMenu, menuIsOpen }) => (
         _updateLocation('/')
         _closeMenu()
       }}>Home</Link>
-      <Link className='item' href='/landings' onClick={(e) => {
-        _updateLocation('/landings')
+      <Link className='item' href='/articles' onClick={(e) => {
+        _updateLocation('/articles')
         _closeMenu()
-      }}>Landings</Link>
+      }}>Articles</Link>
       <Link className='item' href='/about' onClick={(e) => {
         _updateLocation('/about')
         _closeMenu()
