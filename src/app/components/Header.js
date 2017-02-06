@@ -11,7 +11,7 @@ const Header = ({ _updateLocation, _openMenu, _closeMenu, menuIsOpen }) => (
       <div className='identity'>[logo]</div>
     </div>
     <label className='ic-menu' onClick={(e) => {
-      _openMenu()
+      menuIsOpen ? _closeMenu() : _openMenu()
     }}>
       <div className='i' />
       <div className='i' />
