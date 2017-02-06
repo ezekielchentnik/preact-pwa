@@ -4,21 +4,12 @@ body {
 }
 
 .Header {
-
-	svg {
-		fill: white;
-height: 58px;
-float: left;
-margin-top: 7px;
-margin-left: 10px;
-	}
-
 	position: fixed;
 	width: 100%;
 	top: 0;
 	min-height: 65px;
 
-	#click{
+	#hamburger{
 		display: none;
 	}
 
@@ -85,11 +76,11 @@ margin-left: 10px;
 		}
 	}
 
-	#click:checked ~ .toolbar{
+	#hamburger:checked ~ .toolbar{
 		height: 250%;
 	}
 
-	#click:checked ~ .Nav{
+	#hamburger:checked ~ .Nav{
 		transform: scale(1);
 		opacity: 1;
 	}

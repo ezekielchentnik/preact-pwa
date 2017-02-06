@@ -6,7 +6,7 @@ import Link from './Link'
 
 const Header = ({ _updateLocation, _openMenu, _closeMenu, menuIsOpen }) => (
   <header className='Header'>
-    <input id='click' type='checkbox' checked={menuIsOpen ? 'checked' : null} />
+    <input id='hamburger' type='checkbox' checked={menuIsOpen ? 'checked' : null} />
     <div className='toolbar'>
       <div className='identity'>[logo]</div>
     </div>
