@@ -45,7 +45,7 @@ export default Router().get('/', (req, res) => {
   })
   withTimeout(
     store.dispatch(fetchInitialState()),
-    50 // adjust for optimal threshold, ideally our services should be super fast
+    100 // adjust for optimal threshold, ideally our services should be super fast
   )
   .catch((err) => console.log(err))
   .then(() => res.send(createAppShell(store)))

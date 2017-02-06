@@ -1,7 +1,7 @@
 import { UPDATE_LOCATION, OPEN_MENU, CLOSE_MENU } from './../actions/ActionTypes'
 
 export const initialState = {
-  title: 'Meteors',
+  title: 'Articles',
   uuid: 'no_user',
   currentUrl: '/',
   menuIsOpen: false
