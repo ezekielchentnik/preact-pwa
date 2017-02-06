@@ -6,7 +6,7 @@ import {
 import { getShouldFetchArticles, getArticles } from './../selectors/articles'
 import { getCurrentUrl, getMenuIsOpen } from './../selectors/meta'
 
-const TOPSTORIES_API_URL = 'https://data.nasa.gov/resource/y77d-th95.json?$limit=1000&$$app_token=sSFakym1uNFEBkIkqUPln1k6Z&$offset=0'
+const TOPSTORIES_API_URL = 'https://jsonplaceholder.typicode.com/posts'
 
 const startAction = (type) => ({ type })
 const successAction = (type, json) => ({ type, payload: json, meta: { receivedAt: Date.now() } })

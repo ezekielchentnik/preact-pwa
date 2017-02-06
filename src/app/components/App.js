@@ -7,7 +7,7 @@ import Article from './Article'
 import About from './About'
 import Splash from './Splash'
 
-const Content = ({ currentUrl }) => { // todo: make routing better
+const Content = ({ currentUrl }) => { // todo: make routing more robust
   if (currentUrl.indexOf('/articles/') > -1) {
     return <Article id={currentUrl} />
   } else if (currentUrl === '/articles') {

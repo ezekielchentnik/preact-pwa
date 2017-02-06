@@ -7,7 +7,7 @@ import Link from './Link'
 const Article = ({ article, _updateLocation }) => (
   <li className='Article' >
     <Link href={`/articles/${article.id}`} onClick={(e) => _updateLocation(`/articles/${article.id}`)}>
-      {article.name}
+      {article.title}
     </Link>
   </li>
 )

@@ -10,7 +10,7 @@ const app = document.getElementById('app')
 const store = createStore(window.__STATE__, clientFetch)
 
 ensurePolyfills(() => { // assumes no pollys in components
-  store.dispatch(fetchInitialState())
+  // store.dispatch(fetchInitialState())
 })
 
 window.addEventListener('popstate', (e) => {
