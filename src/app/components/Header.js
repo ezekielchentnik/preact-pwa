@@ -1,17 +1,17 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
 import { connect } from 'preact-redux'
-import { toggleMenu, updateLocation } from './../store/actions/ActionCreators'
-import { getMenuIsExpanded } from './../store/selectors/meta'
+import { updateLocation, openMenu, closeMenu } from './../store/actions/ActionCreators'
+import { getMenuIsOpen } from './../store/selectors/meta'
 import Link from './Link'
 
-const Header = ({ _toggleMenu, _updateLocation, menuIsExpanded }) => (
+const Header = ({ _updateLocation, _openMenu, _closeMenu, menuIsOpen }) => (
   <header className='Header'>
-    <input id='click' type='checkbox' checked={menuIsExpanded ? 'checked' : null} />
+    <input id='click' type='checkbox' checked={menuIsOpen ? 'checked' : null} />
     <div className='toolbar'>
       <div className='identity'>[logo]</div>
     </div>
     <label className='ic-menu' onClick={(e) => {
-      _toggleMenu()
+      _openMenu()
     }}>
       <div className='i' />
       <div className='i' />
@@ -20,15 +20,15 @@ const Header = ({ _toggleMenu, _updateLocation, menuIsExpanded }) => (
     <nav className='Nav'>
       <Link className='item' href='/' onClick={(e) => {
         _updateLocation('/')
-        _toggleMenu()
+        _closeMenu()
       }}>Home</Link>
       <Link className='item' href='/landings' onClick={(e) => {
         _updateLocation('/landings')
-        _toggleMenu()
+        _closeMenu()
       }}>Landings</Link>
       <Link className='item' href='/about' onClick={(e) => {
         _updateLocation('/about')
-        _toggleMenu()
+        _closeMenu()
       }}>About</Link>
     </nav>
   </header>
@@ -36,10 +36,11 @@ const Header = ({ _toggleMenu, _updateLocation, menuIsExpanded }) => (
 
 export default connect(
   (state) => ({
-    menuIsExpanded: getMenuIsExpanded(state)
+    menuIsOpen: getMenuIsOpen(state)
   }),
   (dispatch) => ({
-    _toggleMenu: () => dispatch(toggleMenu()),
-    _updateLocation: (url) => dispatch(updateLocation(url))
+    _updateLocation: (url) => dispatch(updateLocation(url)),
+    _openMenu: () => dispatch(openMenu()),
+    _closeMenu: () => dispatch(closeMenu())
   })
 )(Header)

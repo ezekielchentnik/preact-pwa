@@ -1,6 +1,10 @@
-import { FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR, UPDATE_LOCATION, TOGGLE_MENU } from './ActionTypes'
+import {
+  FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR,
+  UPDATE_LOCATION,
+  OPEN_MENU, CLOSE_MENU
+} from './ActionTypes'
 import { getShouldFetchArticles, getArticles } from './../selectors/articles'
-import { getCurrentUrl } from './../selectors/meta'
+import { getCurrentUrl, getMenuIsOpen } from './../selectors/meta'
 
 const TOPSTORIES_API_URL = 'https://data.nasa.gov/resource/y77d-th95.json?$limit=1000&$$app_token=sSFakym1uNFEBkIkqUPln1k6Z&$offset=0'
 
@@ -36,6 +40,8 @@ export const updateLocation = (newURL) => (dispatch, getState) => {
   })
 }
 
-export const toggleMenu = () => ({
-  type: TOGGLE_MENU
-})
+export const openMenu = () => ({ type: OPEN_MENU })
+export const closeMenu = () => ({ type: CLOSE_MENU })
+export const toggleMenu = () => (dispatch, getState) => {
+  return getMenuIsOpen(getState()) ? closeMenu() : openMenu()
+}

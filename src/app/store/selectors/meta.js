@@ -1,3 +1,3 @@
 export const getUuid = (state) => state.meta.uuid
-export const getMenuIsExpanded = (state) => state.meta.menuIsExpanded
+export const getMenuIsOpen = (state) => state.meta.menuIsOpen
 export const getCurrentUrl = (state) => state.meta.currentUrl
