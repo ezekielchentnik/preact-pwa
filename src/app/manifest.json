@@ -1,17 +1,19 @@
 {
-  "name": "Articles",
-  "short_name": "Articles",
-  "scope": "./",
-  "icons": [{
-    "src": "imgs/icon-144.png",
-    "sizes": "144x144",
-    "type": "image/png"
-  },
-  {
-    "src": "imgs/icon-192.png",
-    "sizes": "192x192",
-    "type": "image/png"
-  }],
-  "display": "standalone",
-  "start_url": "./"
+	"name": "Articles",
+	"short_name": "Articles",
+	"scope": "./",
+	"start_url": "./",
+	"icons": [{
+		"src": "imgs/icon-144.png",
+		"sizes": "144x144",
+		"type": "image/png"
+	}, {
+		"src": "imgs/icon-192.png",
+		"sizes": "192x192",
+		"type": "image/png"
+	}],
+	"background_color": "#FFFFFF",
+	"theme_color": "#3367d6",
+	"display": "standalone",
+	"orientation": "portrait"
 }

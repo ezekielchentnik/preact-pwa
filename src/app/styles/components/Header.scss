@@ -8,7 +8,10 @@ body {
 	width: 100%;
 	top: 0;
 	min-height: 65px;
-
+	
+	.identity{
+		color: white;
+	}
 	#hamburger{
 		display: none;
 	}
@@ -19,7 +22,7 @@ body {
     display: block;
     height: 65px;
     width: 100%;
-    background: #1abc9c;
+    background: #3367d6;
     -webkit-transition: all .5s cubic-bezier(.87,-.2,.19,1.2) .2s;
     transition: all .5s cubic-bezier(.87,-.2,.19,1.2) .2s;
     z-index: 1;
