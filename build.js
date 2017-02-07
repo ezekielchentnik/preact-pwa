@@ -76,7 +76,7 @@ const sw = () => swPrecache.write('build/public/sw.js', {
   replacePrefix: `/public`,
   stripPrefix: './build/public',
   runtimeCaching: [{
-    urlPattern: /\w*woff|JPG\b/, // todo: tweak pattern to dedupe fonts
+    urlPattern: /\w*woff|JPG\b/,
     handler: 'cacheFirst'
   }]
 })

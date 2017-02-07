@@ -12,13 +12,14 @@ import assets from './../../../build/assets'
 const jsUrl = `/public/${assets['bundle.js']}`
 const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
 // const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
-// todo: <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
+    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/public/manifest.json">
     <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
     <link rel="preload" as=script href="${jsUrl}">
     <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
