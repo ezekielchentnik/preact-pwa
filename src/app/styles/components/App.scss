@@ -1,157 +1,49 @@
 * {
-	box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
 }
-body{
-	overflow-x: hidden;
-  font: 14px/1.21 'Helvetica Neue',arial;
+#app,
+body {
+				width: 100vw;
+				min-height: 100vh;
+				overflow-x: hidden;
+				color: #212121;
+				background: #f5f5f5;
+				font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
+				font-weight: 400;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+				text-rendering: optimizeLegibility;
 }
 
-.meteor {
-  position: relative;
-  margin: auto;
-  -webkit-transform: rotate(-25deg);
-          transform: rotate(-25deg);
-  -webkit-animation: shake 0.3s infinite;
-          animation: shake 0.3s infinite;
+.page {
+				padding: 72px 32px 16px 32px;
+				min-height: 100%;
+				width: 100%;
 }
-.meteor .tracks {
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  width: 60px;
-  height: 25px;
-  border-radius: 20px 0 0 20px;
-  background: #ff7eff;
+.page nav {
+				margin: 0 8px;
 }
-.meteor .track {
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  border-radius: 5px;
-  background: #ff7eff;
+.page nav a {
+				display: block;
 }
-.meteor .track:nth-child(1) {
-  position: absolute;
-  top: 0px;
-  right: -2px;
-  -webkit-animation: anim 0.3s ease-in-out infinite 0.1s;
-          animation: anim 0.3s ease-in-out infinite 0.1s;
+@media screen and (max-width:321px) {
+				.page {
+								padding: 16px 8px;
+				}
 }
-.meteor .track:nth-child(2) {
-  position: absolute;
-  top: 5px;
-  right: -4px;
-  -webkit-animation: anim 0.3s ease-in-out infinite 0.2s;
-          animation: anim 0.3s ease-in-out infinite 0.2s;
+
+.card {
+	box-shadow: 0 1px 3px 0 rgba(33,33,33,.2),0 1px 1px 0 rgba(33,33,33,.14),0 2px 1px -1px rgba(33,33,33,.12);
+
+				display: block;
+				position: relative;
+				background: #fff;
+				border-radius: 2px;
+				margin: 0 0 8px;
+				padding: 16px;
 }
-.meteor .track:nth-child(3) {
-  position: absolute;
-  top: 10px;
-  right: -6px;
-  -webkit-animation: anim 0.3s ease-in-out infinite 0.3s;
-          animation: anim 0.3s ease-in-out infinite 0.3s;
-}
-.meteor .track:nth-child(4) {
-  position: absolute;
-  top: 15px;
-  right: -8px;
-  -webkit-animation: anim 0.3s ease-in-out infinite 0.4s;
-          animation: anim 0.3s ease-in-out infinite 0.4s;
-}
-.meteor .track:nth-child(5) {
-  position: absolute;
-  top: 20px;
-  right: -10px;
-  -webkit-animation: anim 0.3s ease-in-out infinite 0.5s;
-          animation: anim 0.3s ease-in-out infinite 0.5s;
-}
-.meteor .track:nth-child(even) {
-  background: #f0f;
-}
-.meteoriod {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-}
-.meteoriod .tracks {
-  position: absolute;
-  width: 30px;
-  height: 15px;
-  border-radius: 18px 0 0 18px;
-  background: #fff;
-}
-.meteoriod .track {
-  position: absolute;
-  width: 15px;
-  height: 3px;
-  border-radius: 3px;
-  background: #fff;
-}
-.meteoriod .track:nth-child(1) {
-  position: absolute;
-  top: 0px;
-  right: -2px;
-}
-.meteoriod .track:nth-child(2) {
-  position: absolute;
-  top: 3px;
-  right: -4px;
-}
-.meteoriod .track:nth-child(3) {
-  position: absolute;
-  top: 6px;
-  right: -6px;
-}
-.meteoriod .track:nth-child(4) {
-  position: absolute;
-  top: 9px;
-  right: -8px;
-}
-.meteoriod .track:nth-child(5) {
-  position: absolute;
-  top: 12px;
-  right: -10px;
-}
-.meteoriod .track:nth-child(even) {
-  background: #ff7eff;
-}
-@-webkit-keyframes anim {
-  50% {
-    -webkit-transform: translateX(5px);
-            transform: translateX(5px);
-  }
-  100% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
-  }
-}
-@keyframes anim {
-  50% {
-    -webkit-transform: translateX(5px);
-            transform: translateX(5px);
-  }
-  100% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
-  }
-}
-@-webkit-keyframes shake {
-  50% {
-    -webkit-transform: translateX(2px) translateY(2px) rotate(-25deg);
-            transform: translateX(2px) translateY(2px) rotate(-25deg);
-  }
-  100% {
-    -webkit-transform: translateX(0px) translateY(0px) rotate(-25deg);
-            transform: translateX(0px) translateY(0px) rotate(-25deg);
-  }
-}
-@keyframes shake {
-  50% {
-    -webkit-transform: translateX(2px) translateY(2px) rotate(-25deg);
-            transform: translateX(2px) translateY(2px) rotate(-25deg);
-  }
-  100% {
-    -webkit-transform: translateX(0px) translateY(0px) rotate(-25deg);
-            transform: translateX(0px) translateY(0px) rotate(-25deg);
-  }
+.card h2 {
+				margin-bottom: 16px;
 }

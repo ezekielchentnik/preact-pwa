@@ -1,46 +1,29 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
 import { connect } from 'preact-redux'
-import { updateLocation, openMenu, closeMenu } from './../store/actions/ActionCreators'
-import { getMenuIsOpen } from './../store/selectors/meta'
+import { updateLocation } from './../store/actions/ActionCreators'
 import Link from './Link'
 
-const Header = ({ _updateLocation, _openMenu, _closeMenu, menuIsOpen }) => (
+const Header = ({ _updateLocation }) => (
   <header className='Header'>
-    <input id='hamburger' type='checkbox' checked={menuIsOpen ? 'checked' : null} />
-    <div className='toolbar'>
-      <div className='identity'>[logo]</div>
-    </div>
-    <label className='ic-menu' onClick={(e) => {
-      menuIsOpen ? _closeMenu() : _openMenu()
-    }}>
-      <div className='i' />
-      <div className='i' />
-      <div className='i' />
-    </label>
-    <nav className='Nav'>
+    <h1>
       <Link className='item' href='/' onClick={(e) => {
         _updateLocation('/')
-        _closeMenu()
+      }}>Pineapple</Link>
+    </h1>
+    <nav>
+      <Link className='item' href='/' onClick={(e) => {
+        _updateLocation('/')
       }}>Home</Link>
       <Link className='item' href='/articles' onClick={(e) => {
         _updateLocation('/articles')
-        _closeMenu()
       }}>Articles</Link>
-      <Link className='item' href='/about' onClick={(e) => {
-        _updateLocation('/about')
-        _closeMenu()
-      }}>About</Link>
     </nav>
   </header>
 )
 
 export default connect(
-  (state) => ({
-    menuIsOpen: getMenuIsOpen(state)
-  }),
+  null,
   (dispatch) => ({
-    _updateLocation: (url) => dispatch(updateLocation(url)),
-    _openMenu: () => dispatch(openMenu()),
-    _closeMenu: () => dispatch(closeMenu())
+    _updateLocation: (url) => dispatch(updateLocation(url))
   })
 )(Header)

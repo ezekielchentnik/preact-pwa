@@ -4,16 +4,13 @@ import { getCurrentUrl } from './../store/selectors/meta'
 import Header from './Header'
 import Articles from './Articles'
 import Article from './Article'
-import About from './About'
 import Splash from './Splash'
 
-const Content = ({ currentUrl }) => { // todo: make routing more robust
+const Page = ({ currentUrl }) => { // todo: make routing more robust
   if (currentUrl.indexOf('/articles/') > -1) {
-    return <Article id={currentUrl} />
+    return <Article />
   } else if (currentUrl === '/articles') {
     return <Articles />
-  } else if (currentUrl === '/about') {
-    return <About />
   } else {
     return <Splash />
   }
@@ -23,7 +20,7 @@ const App = ({ store, currentUrl }) => (
   <Provider store={store}>
     <div className='App'>
       <Header />
-      <Content currentUrl={currentUrl} />
+      <Page currentUrl={currentUrl} />
     </div>
   </Provider>
 )

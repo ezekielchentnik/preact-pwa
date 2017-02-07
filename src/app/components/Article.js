@@ -9,9 +9,11 @@ const Loader = () => (
 )
 
 const Article = ({ article }) => article ? (
-  <div className='Article'>
-    <h1>{article.title}</h1>
-    <div className='body'>{article.body}</div>
+  <div className='Article page'>
+    <div className='card'>
+      <h1>{article.title}</h1>
+      <div className='body'>{article.body}</div>
+    </div>
   </div>
 ) : <Loader />
 
