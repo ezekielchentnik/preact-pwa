@@ -78,6 +78,9 @@ const sw = () => swPrecache.write('build/public/sw.js', {
   runtimeCaching: [{
     urlPattern: /\w*woff|JPG\b/,
     handler: 'cacheFirst'
+  }, {
+    urlPattern: '/',
+    handler: 'cacheFirst'
   }]
 })
 

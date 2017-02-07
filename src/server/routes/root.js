@@ -19,6 +19,7 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#3367d6">
     <link rel="manifest" href="/public/manifest.json">
     <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
     <link rel="preload" as=script href="${jsUrl}">
