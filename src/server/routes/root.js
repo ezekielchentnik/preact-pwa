@@ -19,6 +19,8 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
+    <link rel="preload" as=script href="${jsUrl}">
     <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
     <style>${inlineCss}</style>
   </head>
@@ -40,12 +42,9 @@ const createAppShell = (store) => {
 export default Router().get('/', (req, res) => {
   const store = createStore(createPreloadedState(), createServerFetch())
   store.dispatch(updateLocation(req.originalUrl)) // todo: sanitize
-  res.set({
-    'Link': `<https://jsonplaceholder.typicode.com>; rel=dns-prefetch, <${jsUrl}>, rel=preload; as=script`
-  })
   withTimeout(
     store.dispatch(fetchInitialState()),
-    100 // adjust for optimal threshold, ideally our services should be super fast
+    50 // adjust for optimal threshold, ideally our services should be super fast
   )
   .catch((err) => console.log(err))
   .then(() => res.send(createAppShell(store)))

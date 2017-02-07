@@ -9,8 +9,8 @@ import { getCurrentUrl, getMenuIsOpen } from './../selectors/meta'
 const TOPSTORIES_API_URL = 'https://jsonplaceholder.typicode.com/posts'
 
 const startAction = (type) => ({ type })
-const successAction = (type, json) => ({ type, payload: json, meta: { receivedAt: Date.now() } })
-const errorAction = (type, error) => ({ type, payload: error, error: true, meta: { receivedAt: Date.now() } })
+const successAction = (type, json) => ({ type, payload: json })
+const errorAction = (type, error) => ({ type, payload: error, error: true })
 
 const fetchArticles = () => (dispatch, getState, fetchMethod) => {
   dispatch(startAction(FETCH_ARTICLES))

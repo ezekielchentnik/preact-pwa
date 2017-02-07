@@ -1,7 +1,6 @@
 import { FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR, INVALIDATE_FETCH_ARTICLES } from './../actions/ActionTypes'
 
 export const initialState = {
-  lastUpdated: null,
   didInvalidate: false,
   isFetching: false,
   hasFetched: false,
@@ -22,7 +21,6 @@ export default (state = initialState, { type, payload, meta }) => {
         error: payload,
         hasFetched: true,
         isFetching: false,
-        lastUpdated: meta.receivedAt,
         didInvalidate: true
       })
     case FETCH_ARTICLES_SUCCESS:
@@ -30,7 +28,6 @@ export default (state = initialState, { type, payload, meta }) => {
         collection: payload,
         hasFetched: true,
         isFetching: false,
-        lastUpdated: meta.receivedAt,
         didInvalidate: false
       })
     case INVALIDATE_FETCH_ARTICLES:
