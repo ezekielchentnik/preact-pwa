@@ -15,7 +15,6 @@ const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
-    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }</script>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,6 +29,7 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <div id="app">${html}</div>
     <script>window.__STATE__=${JSON.stringify(state)}</script>
     <script async src="${jsUrl}"></script>
+    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }</script>
   </body>
 </html>`
 
@@ -46,7 +46,7 @@ export default Router().get('/', (req, res) => {
   store.dispatch(updateLocation(req.originalUrl)) // todo: sanitize
   withTimeout(
     store.dispatch(fetchInitialState()),
-    50 // adjust for optimal threshold, ideally our services should be super fast
+    100 // adjust for optimal threshold, ideally our services should be super fast
   )
   .catch((err) => console.log(err))
   .then(() => res.send(createAppShell(store)))

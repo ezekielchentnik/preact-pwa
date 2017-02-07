@@ -72,6 +72,7 @@ const css = () => sass({ file: `src/app/styles/entry.scss` })
 
 const sw = () => swPrecache.write('build/public/service-worker.js', {
   cacheId: `${name}-${version}`, // include version incase we need to bump and dump
+  directoryIndex: '/',
   staticFileGlobs: [
     './build/public/manifest.json',
     './build/public/bundle-*.{js,css}',
@@ -84,7 +85,7 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
   replacePrefix: `/public`,
   stripPrefix: './build/public',
   runtimeCaching: [{
-    urlPattern: '/posts',
+    urlPattern: /\/posts/,
     handler: 'cacheFirst'
   }]
 })
