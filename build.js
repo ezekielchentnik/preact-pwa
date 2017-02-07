@@ -70,7 +70,7 @@ const css = () => sass({ file: `src/app/styles/entry.scss` })
   .then((purified) => cssnano(purified, { autoprefixer: { add: true } }))
   .then(({ css }) => writeFile(`build/public/bundle.css`, css))
 
-const sw = () => swPrecache.write('build/public/sw.js', {
+const sw = () => swPrecache.write('build/public/service-worker.js', {
   cacheId: `${name}-${version}`, // include version incase we need to bump and dump
   staticFileGlobs: ['./build/public/bundle-*.{js,css}', './build/public/*.{gif,png,svg}'],
   dontCacheBustUrlsMatching: [
