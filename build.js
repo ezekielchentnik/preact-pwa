@@ -73,13 +73,14 @@ const css = () => sass({ file: `src/app/styles/entry.scss` })
 const sw = () => swPrecache.write('build/public/sw.js', {
   cacheId: `${name}-${version}`, // include version incase we need to bump and dump
   staticFileGlobs: ['./build/public/bundle-*.{js,css}', './build/public/*.{gif,png,svg}'],
+  dontCacheBustUrlsMatching: [
+    /\.(js|css)$/
+  ],
+  skipWaiting: true,
   replacePrefix: `/public`,
   stripPrefix: './build/public',
   runtimeCaching: [{
-    urlPattern: /\w*woff|JPG\b/,
-    handler: 'cacheFirst'
-  }, {
-    urlPattern: '/',
+    urlPattern: '/posts',
     handler: 'cacheFirst'
   }]
 })
