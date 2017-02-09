@@ -83,9 +83,6 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
   dynamicUrlToDependencies: {
     '/': ['./src/server/routes/root.js', './src/app/components/App.js']
   },
-  dontCacheBustUrlsMatching: [
-    /\.(js|css)$/
-  ],
   skipWaiting: true,
   replacePrefix: `/public`,
   stripPrefix: './build/public',
