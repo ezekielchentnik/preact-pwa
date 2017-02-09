@@ -8,7 +8,7 @@ import Splash from './Splash'
 
 const Page = ({ currentUrl }) => { // todo: make routing more robust
   if (currentUrl.indexOf('/articles/') > -1) {
-    return <Article />
+    return <Article id={currentUrl.split('/articles/')[1]} />
   } else if (currentUrl === '/articles') {
     return <Articles />
   } else {
