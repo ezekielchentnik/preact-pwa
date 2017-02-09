@@ -108,7 +108,7 @@ const rev = () => Promise.resolve().then(() => nodeRev({
 
 const clean = () => exec('rm -rf ./build && mkdir -p ./build/public')
 const polyfills = () => exec(`cp src/app/utils/polyfills.min.js build/public/`)
-const manifest = () => exec(`cp src/app/manifest.json build/public/`)
+const copy = () => exec(`cp -R src/app/static/. build/public/`)
 
 const tasks = new Map()
 const run = (task) => {
@@ -121,14 +121,14 @@ const run = (task) => {
 tasks.set('client', client)
 tasks.set('css', css)
 tasks.set('polyfills', polyfills)
-tasks.set('manifest', manifest)
+tasks.set('copy', copy)
 tasks.set('clean', clean)
 tasks.set('rev', rev)
 tasks.set('sw', sw)
 tasks.set('server', server)
 tasks.set('build', () =>
   run('clean')
-  .then(() => Promise.all([run('client'), run('css'), run('polyfills'), run('manifest')]))
+  .then(() => Promise.all([run('client'), run('css'), run('polyfills'), run('copy')]))
   .then(() => run('rev'))
   .then(() => Promise.all([run('server'), run('sw')]))
 )
