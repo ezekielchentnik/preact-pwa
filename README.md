@@ -1,10 +1,10 @@
-# [preact-pwa](https://secure-taiga-68678.herokuapp.com/)
+# [preact-pwa](https://preact-pwa.appspot.com/)
 
 A `Super fast progressive web app` with a small footprint & minimal dependancies.  
 
 Features universal rendering, redux, state-driven routing, preact, & service workers.  Crunched & optimized with rollup, buble, optimize-js, & purify-css.
 
-Live version: [https://secure-taiga-68678.herokuapp.com/](https://secure-taiga-68678.herokuapp.com/)
+Live version: [https://preact-pwa.appspot.com/](https://preact-pwa.appspot.com/)
 
 ## bundle sizes & perf
 ```
