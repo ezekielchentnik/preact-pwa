@@ -3,7 +3,8 @@ import { h } from 'preact' // eslint-disable-line no-unused-vars
 export default () => (
   <div className='Splash page'>
     <div className='card'>
-      <h1>Oops, not found!</h1>
+      <h1>Dag nab it!</h1>
+      <p>The url you are trying cannot be found.</p>
     </div>
   </div>
 )
