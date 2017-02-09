@@ -5,7 +5,7 @@ import { updateLocation } from './../store/actions/ActionCreators'
 import Link from './Link'
 
 const Article = ({ article, _updateLocation }) => (
-  <li className='Article'>
+  <li className='Article card'>
     <Link href={`/articles/${article.id}`} onClick={(e) => _updateLocation(`/articles/${article.id}`)}>
       {article.title}
     </Link>
@@ -14,7 +14,7 @@ const Article = ({ article, _updateLocation }) => (
 
 const Articles = ({ articles, _updateLocation }) => (
   <div className='page'>
-    <ul className='Articles card'>
+    <ul className='Articles'>
       {articles.map((article, i) => (
         <Article _updateLocation={_updateLocation} article={article} key={i} />
       ))}

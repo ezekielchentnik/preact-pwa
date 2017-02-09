@@ -15,7 +15,7 @@ const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
-    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }</script>
+    <script></script>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
