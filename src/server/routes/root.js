@@ -15,10 +15,11 @@ const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
+    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }</script>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#3367d6">
+    <meta name="theme-color" content="#002b49">
     <link rel="manifest" href="/public/manifest.json">
     <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
     <link rel="preload" as=script href="${jsUrl}">
@@ -29,7 +30,6 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <div id="app">${html}</div>
     <script>window.__STATE__=${JSON.stringify(state)}</script>
     <script async src="${jsUrl}"></script>
-    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }</script>
   </body>
 </html>`
 
