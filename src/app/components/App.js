@@ -6,27 +6,25 @@ import Articles from './Articles'
 import Article from './Article'
 import Splash from './Splash'
 
-const Page = ({ id, currentUrl }) => { // todo: make routing more robust
+const Page = connect(
+  (state) => ({
+    currentUrl: getCurrentUrl(state)
+  })
+)(({ currentUrl }) => { // todo: make routing more robust
   if (currentUrl.indexOf('/articles/') > -1) {
-    return <Article />
+    return <Article currentUrl={currentUrl} />
   } else if (currentUrl === '/articles') {
     return <Articles />
   } else {
     return <Splash />
   }
-}
+})
 
-const App = ({ store, currentUrl }) => (
+export default ({ store, currentUrl }) => (
   <Provider store={store}>
-    <div className='App'>
+    <div >
       <Header />
-      <Page currentUrl={currentUrl} />
+      <Page />
     </div>
   </Provider>
 )
-
-export default connect(
-  (state) => ({
-    currentUrl: getCurrentUrl(state)
-  })
-)(App)
