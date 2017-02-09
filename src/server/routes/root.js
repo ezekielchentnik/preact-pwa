@@ -51,7 +51,7 @@ export default Router().get('/', (req, res) => {
   store.dispatch(updateLocation(req.originalUrl)) // todo: sanitize
   withTimeout(
     store.dispatch(fetchInitialState()),
-    100 // adjust for optimal threshold, ideally our services should be super fast
+    100 // adjust for optimal threshold
   )
   .catch((err) => console.log(err))
   .then(() => res.send(createAppShell(store)))

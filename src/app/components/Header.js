@@ -17,9 +17,6 @@ const Header = ({ _updateLocation }) => (
       <Link className='item' href='/articles' onClick={(e) => {
         _updateLocation('/articles')
       }}>Articles</Link>
-      <Link className='item' href='/articles' onClick={(e) => {
-        _updateLocation('/articles')
-      }}>Articles</Link>
     </nav>
   </header>
 )
