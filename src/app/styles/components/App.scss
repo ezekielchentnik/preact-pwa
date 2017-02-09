@@ -1,49 +1,52 @@
 * {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
+
 #app,
 body {
-				width: 100vw;
-				min-height: 100vh;
-				overflow-x: hidden;
-				color: #212121;
-				background: #f1f1f1;
-				font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
-				font-weight: 400;
-				-moz-osx-font-smoothing: grayscale;
-				-webkit-font-smoothing: antialiased;
-				text-rendering: optimizeLegibility;
+	width: 100vw;
+	min-height: 100vh;
+	overflow-x: hidden;
+	color: #212121;
+	background: #f1f1f1;
+	font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
+	font-weight: 400;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 }
 
 .page {
-				padding: 72px 32px 16px 32px;
-				min-height: 100%;
-				width: 100%;
+	padding: 72px 32px 16px;
+	min-height: 100%;
+	width: 100%;
 }
+
 .page nav {
-				margin: 0 8px;
+	margin: 0 8px;
 }
+
 .page nav a {
-				display: block;
+	display: block;
 }
 @media screen and (max-width:321px) {
-				.page {
-								padding: 16px 8px;
-				}
+	.page {
+		padding: 16px 8px;
+	}
 }
 
 .card {
 	box-shadow: 0 1px 3px 0 rgba(33,33,33,.2),0 1px 1px 0 rgba(33,33,33,.14),0 2px 1px -1px rgba(33,33,33,.12);
-
-				display: block;
-				position: relative;
-				background: #fff;
-				border-radius: 2px;
-				margin: 0 0 8px;
-				padding: 16px;
+	display: block;
+	position: relative;
+	background: #fff;
+	border-radius: 2px;
+	margin: 0 0 8px;
+	padding: 16px;
 }
+
 .card h2 {
-				margin-bottom: 16px;
+	margin-bottom: 16px;
 }

@@ -1,57 +1,61 @@
 .Header {
 	box-shadow: 0 1px 3px 0 rgba(33,33,33,.2),0 1px 1px 0 rgba(33,33,33,.14),0 2px 1px -1px rgba(33,33,33,.12);
+	position: fixed;
+	height: 56px;
+	width: 100%;
+	padding: 0;
+	left: 0;
+	top: 0;
+	background: #002b49;
+	z-index: 50;
+}
 
-				position: fixed;
-				height: 56px;
-				width: 100%;
-				padding: 0;
-				left: 0;
-				top: 0;
-				background: #002b49;
-				z-index: 50;
-}
 .Header h1 {
-				float: left;
-				margin: 0;
-				padding: 0 16px;
-				font-size: 24px;
-				line-height: 56px;
-				font-weight: 400;
-				color: #fff;
-				a:visited,
-				a{
-					color: #fff;
-					text-decoration: none;
-				}
+	float: left;
+	margin: 0;
+	padding: 0 16px;
+	font-size: 24px;
+	line-height: 56px;
+	font-weight: 400;
+	color: #fff;
+
+	a,
+	a:visited {
+		color: #fff;
+		text-decoration: none;
+	}
 }
+
 .Header nav {
-				float: right;
-				font-size: 100%;
+	float: right;
+	font-size: 100%;
 }
+
 .Header nav a {
-				display: inline-block;
-				height: 56px;
-				line-height: 56px;
-				padding: 0 16px;
-				text-align: center;
-				min-width: 50px;
-				background: hsla(0,0%,100%,0);
-				will-change: background-color;
-				text-decoration: none;
-				color: #f5f5f5;
+	display: inline-block;
+	height: 56px;
+	line-height: 56px;
+	padding: 0 16px;
+	text-align: center;
+	min-width: 50px;
+	background: hsla(0,0%,100%,0);
+	will-change: background-color;
+	text-decoration: none;
+	color: #f5f5f5;
 }
+
 .Header nav a:active,
 .Header nav a:hover {
-				background: hsla(0,0%,100%,.3);
+	background: hsla(0,0%,100%,.3);
 }
 @media screen and (max-width:401px) {
-				.Header nav a {
-								padding: 0 8px;
-								min-width: 32px;
-				}
+	.Header nav a {
+		padding: 0 8px;
+		min-width: 32px;
+	}
 }
 @media screen and (max-width:321px) {
-				.Header h1 {
-								font-size: 18px;
-				}
+	.Header h1 {
+		font-size: 18px;
+	}
 }
