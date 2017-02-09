@@ -1,6 +1,6 @@
 {
-	"name": "Pineapple",
-	"short_name": "Pineapple",
+	"name": "Preact PWA",
+	"short_name": "Preact PWA",
 	"scope": "./",
 	"start_url": "./",
 	"background_color": "#f1f1f1",
@@ -8,8 +8,8 @@
 	"display": "standalone",
 	"orientation": "portrait",
 	"icons": [{
-		"src": "icon-512.png",
-		"sizes": "512x512",
-		"type": "image/png"
-	}]
+	    "src": "public/icon-512x512.png",
+	    "type": "image/png",
+	    "sizes": "512x512"
+	  }]
 }
