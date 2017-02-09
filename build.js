@@ -77,11 +77,11 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
     '/',
     './build/public/manifest.json',
     //'./build/public/bundle-*.{js}', // depends if we inlineJs or not
-    './build/public/*.{gif,png,svg}'
+    './build/public/*.{gif,png,svg}' // will not preache /icons
   ],
   navigateFallback: '/',
   dynamicUrlToDependencies: {
-    '/': ['./src/server/routes/root.js', './src/app/components/App.js']
+    '/': ['./build/public/bundle.js', './package.json'] // bust cache when these change
   },
   skipWaiting: true,
   replacePrefix: `/public`,
