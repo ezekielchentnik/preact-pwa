@@ -6,12 +6,5 @@ export default () => (
       <h1>Welcome</h1>
       <p>This is a super fast progressive web app.</p>
     </div>
-    <div className='card'>
-      <h2>Features</h2>
-      <ul>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
   </div>
 )
