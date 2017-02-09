@@ -1,10 +1,9 @@
 import {
   FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR,
-  UPDATE_LOCATION,
-  OPEN_MENU, CLOSE_MENU
+  UPDATE_LOCATION
 } from './ActionTypes'
 import { getShouldFetchArticles, getArticles } from './../selectors/articles'
-import { getCurrentUrl, getMenuIsOpen } from './../selectors/meta'
+import { getUrl, getMenuIsOpen } from './../selectors/meta'
 
 const TOPSTORIES_API_URL = 'https://jsonplaceholder.typicode.com/posts'
 
@@ -32,20 +31,13 @@ export const fetchInitialState = () => (dispatch, getState) => {
 }
 
 export const updateLocation = (newUrl) => (dispatch, getState) => {
-  if (newUrl === getCurrentUrl(getState())) {
+  if (newUrl === getUrl(getState())) {
     return
   }
   dispatch({
     type: UPDATE_LOCATION,
     payload: {
-      currentUrl: newUrl,
-      id: newUrl.indexOf('/articles/') > -1 ? newUrl.split('/articles/')[1] : null
+      url: newUrl
     } // todo: better parse url
   })
-}
-
-export const openMenu = () => ({ type: OPEN_MENU })
-export const closeMenu = () => ({ type: CLOSE_MENU })
-export const toggleMenu = () => (dispatch, getState) => {
-  return getMenuIsOpen(getState()) ? closeMenu() : openMenu()
 }

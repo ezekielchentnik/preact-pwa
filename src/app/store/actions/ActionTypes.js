@@ -4,5 +4,3 @@ export const FETCH_ARTICLES_ERROR = 'api/FETCH_ARTICLES_ERROR'
 export const INVALIDATE_FETCH_ARTICLES = 'api/INVALIDATE_FETCH_ARTICLES'
 
 export const UPDATE_LOCATION = 'meta/UPDATE_LOCATION'
-export const OPEN_MENU = 'meta/OPEN_MENU'
-export const CLOSE_MENU = 'meta/CLOSE_MENU'

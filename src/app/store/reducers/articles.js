@@ -13,7 +13,11 @@ export default (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_ARTICLES:
       return Object.assign({}, state, {
-        isFetching: true
+        didInvalidate: false,
+        isFetching: true,
+        hasFetched: false,
+        hasError: false,
+        error: null
       })
     case FETCH_ARTICLES_ERROR:
       return Object.assign({}, state, {

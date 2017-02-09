@@ -1,8 +1,9 @@
 // todo: optimize selectors
 // import { createSelector } from 'reselect'
+import { getId } from './meta'
 export const getArticles = (state) => state.articles.collection
 export const getArticle = (state) => { // todo: fix fugg it hack, make bullet proof
-  const id = state.meta.id
+  const id = getId(state)
   if (!id) {
     return null
   }

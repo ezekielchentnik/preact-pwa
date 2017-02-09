@@ -1,30 +1,33 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
 import { Provider, connect } from 'preact-redux' // introduces 2.9kb on gzipped bundle, todo: barf, fix
-import { getCurrentUrl } from './../store/selectors/meta'
+import { getUrl } from './../store/selectors/meta'
 import Header from './Header'
 import Articles from './Articles'
 import Article from './Article'
 import Splash from './Splash'
+import FourOhFour from './FourOhFour'
 
-const Page = connect(
+const Content = connect(
   (state) => ({
-    currentUrl: getCurrentUrl(state)
+    url: getUrl(state)
   })
-)(({ currentUrl }) => { // todo: make routing more robust
-  if (currentUrl.indexOf('/articles/') > -1) {
-    return <Article currentUrl={currentUrl} />
-  } else if (currentUrl === '/articles') {
+)(({ url }) => { // todo: make routing more robust
+  if (url.indexOf('/articles/') > -1) {
+    return <Article />
+  } else if (url === '/articles') {
     return <Articles />
-  } else {
+  } else if (url === '/') {
     return <Splash />
+  } else {
+    return <FourOhFour />
   }
 })
 
-export default ({ store, currentUrl }) => (
+export default ({ store }) => (
   <Provider store={store}>
-    <div >
+    <div>
       <Header />
-      <Page />
+      <Content />
     </div>
   </Provider>
 )
