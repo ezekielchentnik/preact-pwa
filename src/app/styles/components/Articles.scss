@@ -1,8 +1,14 @@
 .Articles{
   list-style: none;
+  padding: 0;
   .Article{
-    margin: 0 0 .5em;
-        padding: 0 0 .5em;
-        border-bottom: 1px solid #ccc;
+a:visited,
+        a{display: block;
+color:inherit;
+text-decoration: none;
+          margin: 0 0 .5em;
+              padding: 1em;
+              border-bottom: 1px solid #ccc;
+        }
   }
 }
