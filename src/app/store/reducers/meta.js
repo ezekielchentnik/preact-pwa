@@ -1,7 +1,7 @@
 import { UPDATE_LOCATION } from './../actions/ActionTypes'
 
 export const initialState = {
-  title: 'Articles',
+  title: 'Preact PWA',
   uuid: 'no_user',
   url: '/'
 }

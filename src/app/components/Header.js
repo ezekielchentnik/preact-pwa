@@ -8,7 +8,7 @@ const Header = ({ _updateLocation }) => (
     <h1>
       <Link className='item' href='/' onClick={(e) => {
         _updateLocation('/')
-      }}>Pineapple</Link>
+      }}>Preact PWA</Link>
     </h1>
     <nav>
       <Link className='item' href='/' onClick={(e) => {
