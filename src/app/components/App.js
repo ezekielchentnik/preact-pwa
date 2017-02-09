@@ -1,6 +1,6 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
 import { Provider, connect } from 'preact-redux' // introduces 2.9kb on gzipped bundle, todo: barf, fix
-import { getUrl } from './../store/selectors/meta'
+import { getPathname } from './../store/selectors/meta'
 import Header from './Header'
 import Articles from './Articles'
 import Article from './Article'
@@ -10,16 +10,16 @@ import FourOhFour from './FourOhFour'
 
 const Content = connect(
   (state) => ({
-    url: getUrl(state)
+    pathname: getPathname(state)
   })
-)(({ url }) => { // todo: make routing more robust
-  if (url.indexOf('/articles/') > -1) {
+)(({ pathname }) => { // todo: make routing more robust
+  if (pathname.indexOf('/articles/') > -1) {
     return <Article />
-  } else if (url === '/articles') {
+  } else if (pathname === '/articles') {
     return <Articles />
-  } else if (url === '/about') {
+  } else if (pathname === '/about') {
     return <About />
-  } else if (url === '/') {
+  } else if (pathname === '/') {
     return <Splash />
   } else {
     return <FourOhFour />
