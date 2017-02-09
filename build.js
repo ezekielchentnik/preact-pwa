@@ -79,6 +79,7 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
     './build/public/bundle-*.{js,css}',
     './build/public/*.{gif,png,svg}'
   ],
+  navigateFallback: '/',
   dynamicUrlToDependencies: {
     '/': ['./src/server/routes/root.js', './src/app/components/App.js']
   },
