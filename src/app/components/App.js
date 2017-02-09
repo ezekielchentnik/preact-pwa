@@ -5,6 +5,7 @@ import Header from './Header'
 import Articles from './Articles'
 import Article from './Article'
 import Splash from './Splash'
+import About from './About'
 import FourOhFour from './FourOhFour'
 
 const Content = connect(
@@ -16,6 +17,8 @@ const Content = connect(
     return <Article />
   } else if (url === '/articles') {
     return <Articles />
+  } else if (url === '/about') {
+    return <About />
   } else if (url === '/') {
     return <Splash />
   } else {
