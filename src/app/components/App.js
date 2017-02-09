@@ -5,7 +5,7 @@ import Header from './Header'
 import Articles from './Articles'
 import Article from './Article'
 import Splash from './Splash'
-
+const version = 2
 const Content = connect(
   (state) => ({
     url: getUrl(state)
