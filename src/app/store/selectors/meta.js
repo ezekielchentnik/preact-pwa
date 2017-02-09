@@ -3,3 +3,7 @@
 export const getUuid = (state) => state.meta.uuid
 export const getMenuIsOpen = (state) => state.meta.menuIsOpen
 export const getCurrentUrl = (state) => state.meta.currentUrl
+export const getId = (state) => {
+  console.log(state.meta.id)
+  return state.meta.id
+}

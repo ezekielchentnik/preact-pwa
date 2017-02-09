@@ -2,7 +2,10 @@
 // import { createSelector } from 'reselect'
 export const getArticles = (state) => state.articles.collection
 export const getArticle = (state) => { // todo: fix fugg it hack, make bullet proof
-  const id = state.meta.currentUrl.split('/articles/')[1]
+  const id = state.meta.id
+  if (!id) {
+    return null
+  }
   const articles = state.articles.collection.filter((article) => article.id.toString() === id)
   return articles.length ? articles[0] : null
 }

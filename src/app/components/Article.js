@@ -3,8 +3,10 @@ import { connect } from 'preact-redux'
 import { getArticle } from './../store/selectors/articles'
 
 const Loader = () => (
-  <div>
-    loading...
+  <div className='Loader page'>
+    <div className='card'>
+      Loading
+    </div>
   </div>
 )
 

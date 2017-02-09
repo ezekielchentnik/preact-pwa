@@ -24,19 +24,23 @@ export const fetchArticlesIfNeeded = () => (dispatch, getState) => {
   return getShouldFetchArticles(state) ? dispatch(fetchArticles()) : Promise.resolve(getArticles(state))
 }
 
-export const fetchInitialState = () => (dispatch) => Promise.all([
-  dispatch(fetchArticlesIfNeeded())
-])
+export const fetchInitialState = () => (dispatch, getState) => {
+  const state = getState()
+  return Promise.all([
+    dispatch(fetchArticlesIfNeeded())
+  ])
+}
 
-export const updateLocation = (newURL) => (dispatch, getState) => {
-  if (newURL === getCurrentUrl(getState())) {
+export const updateLocation = (newUrl) => (dispatch, getState) => {
+  if (newUrl === getCurrentUrl(getState())) {
     return
   }
   dispatch({
     type: UPDATE_LOCATION,
     payload: {
-      currentUrl: newURL
-    } // todo: parse url
+      currentUrl: newUrl,
+      id: newUrl.indexOf('/articles/') > -1 ? parseInt(newUrl.split('/articles/')[1]) : null
+    } // todo: better parse url
   })
 }
 

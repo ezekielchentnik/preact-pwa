@@ -4,7 +4,8 @@ export const initialState = {
   title: 'Articles',
   uuid: 'no_user',
   currentUrl: '/',
-  menuIsOpen: false
+  menuIsOpen: false,
+  id: null
 }
 
 export default (state = initialState, { type, payload, meta }) => {

@@ -6,9 +6,9 @@ import Articles from './Articles'
 import Article from './Article'
 import Splash from './Splash'
 
-const Page = ({ currentUrl }) => { // todo: make routing more robust
+const Page = ({ id, currentUrl }) => { // todo: make routing more robust
   if (currentUrl.indexOf('/articles/') > -1) {
-    return <Article id={currentUrl.split('/articles/')[1]} />
+    return <Article />
   } else if (currentUrl === '/articles') {
     return <Articles />
   } else {
