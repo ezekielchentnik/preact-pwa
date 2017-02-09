@@ -1,5 +1,8 @@
 env: flex
 runtime: nodejs
-secure: always
+handlers:
+- url: /.*
+  script: IGNORED
+  secure: always
 skip_files:
  - ^node_modules$
