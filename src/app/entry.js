@@ -7,22 +7,19 @@ import ensurePolyfills from './utils/ensurePolyfills'
 import clientFetch from './utils/makeFetch'
 
 const app = document.getElementById('app')
-const store = createStore(window.__STATE__, clientFetch)
 
-ensurePolyfills(() => { // assumes no pollys in components
-  store.dispatch(fetchInitialState())
-})
-
-window.addEventListener('popstate', (e) => {
+ensurePolyfills(() => {
+  const store = createStore(window.__STATE__, clientFetch)
+  window.addEventListener('popstate', (e) => {
+    store.dispatch(updateLocation(window.location.pathname + window.location.search))
+  })
+  store.subscribe(() => {
+    const currentUrl = getCurrentUrl(store.getState())
+    if (window.location.pathname + window.location.search !== currentUrl) {
+      window.history.pushState({}, '', currentUrl)
+    }
+  })
   store.dispatch(updateLocation(window.location.pathname + window.location.search))
+  store.dispatch(fetchInitialState())
+  render(<App store={store} />, app, app.lastChild)
 })
-
-store.subscribe(() => {
-  const currentUrl = getCurrentUrl(store.getState())
-  if (window.location.pathname + window.location.search !== currentUrl) {
-    window.history.pushState({}, '', currentUrl)
-  }
-})
-store.dispatch(updateLocation(window.location.pathname + window.location.search))
-
-render(<App store={store} />, app, app.lastChild)
