@@ -76,22 +76,18 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
   staticFileGlobs: [
     '/',
     './build/public/manifest.json',
-    //'./build/public/bundle-*.{js}', // depends if we inlineJs or not
+    //'./build/public/bundle-*.{css,js}', // depends if we inlineJs, inlineCss or not
     './build/public/*.{gif,png,svg}' // will not preache /icons
   ],
   navigateFallback: '/',
   dynamicUrlToDependencies: {
-    '/': ['./build/public/bundle.js', './package.json'] // bust cache when these change
+    '/': ['./src/server/routes/root.js', './build/public/bundle.js', './package.json'] // bust cache when these change
   },
   skipWaiting: true,
   replacePrefix: `/public`,
   stripPrefix: './build/public',
   runtimeCaching: [{
-    urlPattern: /\/posts/,
-    handler: 'cacheFirst'
-  },
-  {
-    urlPattern: /\/articles/,
+    urlPattern: /\/posts/, // handle remote api call
     handler: 'cacheFirst'
   }]
 })
