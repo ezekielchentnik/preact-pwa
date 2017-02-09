@@ -5,6 +5,7 @@ import Header from './Header'
 import Articles from './Articles'
 import Article from './Article'
 import Splash from './Splash'
+import FourOhFour from './FourOhFour'
 
 const Content = connect(
   (state) => ({
@@ -17,6 +18,8 @@ const Content = connect(
     return <Articles />
   } else if (url === '/') {
     return <Splash />
+  } else {
+    return <FourOhFour />
   }
 })
 
