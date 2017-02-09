@@ -1,6 +1,7 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
 import { connect } from 'preact-redux'
 import { getArticle } from './../store/selectors/articles'
+import { getId } from './../store/selectors/meta'
 
 const Loader = () => (
   <div className='Loader page'>
@@ -10,8 +11,8 @@ const Loader = () => (
   </div>
 )
 
-const Article = ({ article }) => article ? (
-  <div className='Article page'>
+const Article = ({ article, id }) => article ? (
+  <div id={id} className='Article page'>
     <div className='card'>
       <h1>{article.title}</h1>
       <div className='body'>{article.body}</div>
@@ -21,6 +22,7 @@ const Article = ({ article }) => article ? (
 
 export default connect(
   (state) => ({
-    article: getArticle(state)
+    article: getArticle(state),
+    id: getId(state)
   })
 )(Article)

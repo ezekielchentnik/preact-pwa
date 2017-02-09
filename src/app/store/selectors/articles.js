@@ -6,7 +6,7 @@ export const getArticle = (state) => { // todo: fix fugg it hack, make bullet pr
   if (!id) {
     return null
   }
-  const articles = state.articles.collection.filter((article) => article.id.toString() === id)
+  const articles = state.articles.collection.filter((article) => article.id.toString() === id.toString())
   return articles.length ? articles[0] : null
 }
 export const getHasFetchedArticles = (state) => state.articles.hasFetched

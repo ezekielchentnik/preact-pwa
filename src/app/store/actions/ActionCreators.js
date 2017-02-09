@@ -39,7 +39,7 @@ export const updateLocation = (newUrl) => (dispatch, getState) => {
     type: UPDATE_LOCATION,
     payload: {
       currentUrl: newUrl,
-      id: newUrl.indexOf('/articles/') > -1 ? parseInt(newUrl.split('/articles/')[1]) : null
+      id: newUrl.indexOf('/articles/') > -1 ? newUrl.split('/articles/')[1] : null
     } // todo: better parse url
   })
 }
