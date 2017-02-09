@@ -76,7 +76,7 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
   staticFileGlobs: [
     '/',
     './build/public/manifest.json',
-    './build/public/bundle-*.{js,css}',
+    //'./build/public/bundle-*.{js}', // depends if we inlineJs or not
     './build/public/*.{gif,png,svg}'
   ],
   navigateFallback: '/',

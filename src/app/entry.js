@@ -5,7 +5,7 @@ import { fetchInitialState, updateLocation } from './store/actions/ActionCreator
 import { getUrl } from './store/selectors/meta'
 import ensurePolyfills from './utils/ensurePolyfills'
 import clientFetch from './utils/makeFetch'
-if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }
+
 const app = document.getElementById('app')
 
 ensurePolyfills(() => {

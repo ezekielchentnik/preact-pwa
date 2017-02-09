@@ -11,25 +11,24 @@ import assets from './../../../build/assets'
 
 const jsUrl = `/public/${assets['bundle.js']}`
 const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
-// const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
+const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
-    <script></script>
+    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }</script>
     <title>${state.meta.title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#002b49">
     <link rel="manifest" href="/public/manifest.json">
     <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
-    <link rel="preload" as=script href="${jsUrl}">
     <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
     <style>${inlineCss}</style>
   </head>
   <body>
     <div id="app">${html}</div>
     <script>window.__STATE__=${JSON.stringify(state)}</script>
-    <script async src="${jsUrl}"></script>
+    <script>${inlineJs}</script>
   </body>
 </html>`
 
