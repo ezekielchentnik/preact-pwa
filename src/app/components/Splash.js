@@ -5,6 +5,7 @@ export default () => (
     <div className='card'>
       <h2>Welcome</h2>
       <p><em>A `Super fast progressive web app` with a small footprint & minimal dependancies.</em></p>
+      <p>available at <a href='github.com/ezekielchentnik/preact-pwa'>github.com/ezekielchentnik/preact-pwa</a></p>
     </div>
     <div className='card'>
       <h2>Features</h2>

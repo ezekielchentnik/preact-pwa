@@ -20,7 +20,9 @@ body {
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 }
-
+p{
+	margin-bottom: 1em;
+}
 .page {
 	padding: 72px 32px 16px;
 	min-height: 100%;

@@ -81,7 +81,7 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
   ],
   navigateFallback: '/',
   dynamicUrlToDependencies: {
-    '/': ['./src/server/routes/root.js', './build/public/bundle.js', './package.json'] // bust cache when these change
+    '/': ['./src/server/routes/root.js', './build/public/bundle.css', './build/public/bundle.js', './package.json'] // bust cache when these change
   },
   skipWaiting: true,
   replacePrefix: `/public`,
