@@ -1,5 +1,5 @@
 env: flex
 runtime: nodejs
-
+secure: always
 skip_files:
  - ^node_modules$
