@@ -1,6 +1,6 @@
 # [preact-pwa](https://preact-pwa.appspot.com/)
 
-A `Super fast progressive web app` with a small footprint & minimal dependancies.  
+A `Super fast progressive web app` with a small footprint & minimal dependencies.  
 
 Features universal rendering, redux, state-driven routing, preact, & service workers.  Crunched & optimized with rollup, buble, optimize-js, & purify-css.
 

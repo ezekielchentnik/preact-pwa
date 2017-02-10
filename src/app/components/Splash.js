@@ -4,7 +4,7 @@ export default () => (
   <div className='Splash page'>
     <div className='card'>
       <h2>Welcome</h2>
-      <p><em>A `Super fast progressive web app` with a small footprint & minimal dependancies.</em></p>
+      <p><em>A `Super fast progressive web app` with a small footprint & minimal dependencies.</em></p>
       <p>available at <a href='https://github.com/ezekielchentnik/preact-pwa'>github.com/ezekielchentnik/preact-pwa</a></p>
     </div>
     <div className='card'>
