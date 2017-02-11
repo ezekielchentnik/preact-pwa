@@ -6,6 +6,7 @@ const json = require('rollup-plugin-json')
 const commonjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
 const uglify = require('rollup-plugin-uglify')
+const uglifyConfig = require('./uglify')
 const nodeResolve = require('rollup-plugin-node-resolve')
 const url = require('rollup-plugin-url')
 const cssnano = require('cssnano').process
@@ -52,7 +53,7 @@ const client = () => rollup({
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
     images,
     buble({ jsx: 'h' }),
-    uglify()
+    uglify(uglifyConfig)
   ]
 })
 .then((bundle) => {
