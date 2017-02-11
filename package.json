@@ -35,8 +35,7 @@
     "rollup-plugin-url": "0.1.2",
     "source-map-support": "0.4.8",
     "standard": "8.6.0",
-    "sw-precache": "4.3.0",
-    "tachyons-sass": "4.7.0"
+    "sw-precache": "4.3.0"
   },
   "engines": {
     "node": ">=6.9.1"

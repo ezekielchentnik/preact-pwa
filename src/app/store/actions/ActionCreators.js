@@ -3,7 +3,7 @@ import {
   UPDATE_LOCATION
 } from './ActionTypes'
 import { getShouldFetchArticles, getArticles } from './../selectors/articles'
-import { getUrl, getMenuIsOpen } from './../selectors/meta'
+import { getUrl } from './../selectors/meta'
 
 const TOPSTORIES_API_URL = 'https://jsonplaceholder.typicode.com/posts'
 
