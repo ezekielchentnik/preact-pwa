@@ -13,7 +13,7 @@ const errorAction = (type, error) => ({ type, payload: error, error: true })
 
 const fetchArticles = () => (dispatch, getState, fetchMethod) => {
   dispatch(startAction(FETCH_ARTICLES))
-  return fetchMethod(TOPSTORIES_API_URL)
+  return fetchMethod(TOPSTORIES_API_URL, { credentials: 'include' })
     .then((json) => dispatch(successAction(FETCH_ARTICLES_SUCCESS, json)))
     .catch((error) => dispatch(errorAction(FETCH_ARTICLES_ERROR, error)))
 }
