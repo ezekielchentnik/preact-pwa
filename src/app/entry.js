@@ -4,12 +4,12 @@ import createStore from './store/createStore'
 import { fetchInitialState, updateLocation } from './store/actions/ActionCreators'
 import { getUrl } from './store/selectors/meta'
 import ensurePolyfills from './utils/ensurePolyfills'
-import clientFetch from './utils/makeFetch'
+import makeFetch from './utils/makeFetch'
 
 const app = document.getElementById('app')
 
 ensurePolyfills(() => {
-  const store = createStore(window.__STATE__, clientFetch)
+  const store = createStore(window.__STATE__, makeFetch)
   window.addEventListener('popstate', (e) => {
     store.dispatch(updateLocation(window.location.pathname + window.location.search))
   })
