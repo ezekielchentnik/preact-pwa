@@ -9,7 +9,6 @@ import { readFileSync } from 'fs'
 import { fetchInitialState, updateLocation } from './../../app/store/actions/ActionCreators'
 import assets from './../../../build/assets'
 
-const jsUrl = `/public/${assets['bundle.js']}`
 const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
 const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>

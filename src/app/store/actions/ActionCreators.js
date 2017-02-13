@@ -23,12 +23,9 @@ export const fetchArticlesIfNeeded = () => (dispatch, getState) => {
   return getShouldFetchArticles(state) ? dispatch(fetchArticles()) : Promise.resolve(getArticles(state))
 }
 
-export const fetchInitialState = () => (dispatch, getState) => {
-  const state = getState()
-  return Promise.all([
-    dispatch(fetchArticlesIfNeeded())
-  ])
-}
+export const fetchInitialState = () => (dispatch, getState) => Promise.all([
+  dispatch(fetchArticlesIfNeeded())
+])
 
 export const updateLocation = (newUrl) => (dispatch, getState) => {
   if (newUrl === getUrl(getState())) {
