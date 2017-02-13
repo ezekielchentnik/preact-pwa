@@ -1,7 +1,6 @@
 {
 	"name": "Preact PWA",
 	"short_name": "Preact PWA",
-	"scope": "./",
 	"start_url": "./",
 	"background_color": "#f1f1f1",
 	"theme_color": "#002b49",
