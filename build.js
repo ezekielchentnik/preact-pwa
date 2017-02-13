@@ -100,9 +100,9 @@ const rev = () => Promise.resolve().then(() => nodeRev({
   hash: true
 }))
 
-const clean = () => exec('rm -rf ./build && mkdir -p ./build/public')
-const polyfills = () => exec(`cp src/app/utils/polyfills.min.js build/public/`)
-const copy = () => exec(`cp -R src/app/static/. build/public/`)
+const clean = () => exec('rm -rf ./build && mkdirp ./build/public')
+const polyfills = () => exec(`cp ./src/app/utils/polyfills.min.js ./build/public/`)
+const copy = () => exec(`cp -R ./src/app/static/ ./build/public/`)
 
 const tasks = new Map()
 const run = (task) => {
