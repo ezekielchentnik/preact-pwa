@@ -27,7 +27,7 @@ let clientCache, serverCache
 const writeFile = promisify(fs.writeFile)
 const deleteFolder = promisify(fs.remove)
 const makeFolder = promisify(fs.mkdirp)
-const copyFolder = promisify(fs.copy)
+const copyFiles = promisify(fs.copy)
 const sass = promisify(_sass.render)
 const exec = promisify(_exec)
 
@@ -105,8 +105,8 @@ const rev = () => Promise.resolve().then(() => nodeRev({
 
 const clean = () => Promise.resolve(deleteFolder('./build'))
 const makePublicFolder = () => Promise.resolve(makeFolder('./build/public'))
-const polyfills = () => Promise.resolve(copyFolder(`src/app/utils/polyfills.min.js`, `build/public/polyfills.min.js`))
-const copy = () => Promise.resolve(copyFolder(`src/app/static/`, `./build/public/`))
+const polyfills = () => Promise.resolve(copyFiles(`src/app/utils/polyfills.min.js`, `build/public/polyfills.min.js`))
+const copy = () => Promise.resolve(copyFiles(`src/app/static/`, `./build/public/`))
 
 const tasks = new Map()
 const run = (task) => {
