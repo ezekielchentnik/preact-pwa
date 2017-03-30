@@ -105,7 +105,7 @@ const rev = () => Promise.resolve().then(() => nodeRev({
 
 const clean = () => Promise.resolve(deleteFolder('./build'))
 const makePublicFolder = () => Promise.resolve(makeFolder('./build/public'))
-const polyfills = () => Promise.resolve(copyFolder(`src/app/utils/polyfills.min.js`, `build/public/`))
+const polyfills = () => Promise.resolve(copyFolder(`src/app/utils/polyfills.min.js`, `build/public/polyfills.min.js`))
 const copy = () => Promise.resolve(copyFolder(`src/app/static/`, `./build/public/`))
 
 const tasks = new Map()
