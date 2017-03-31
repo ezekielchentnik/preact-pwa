@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs-extra')
 const rollup = require('rollup').rollup
 const _sass = require('node-sass')
 const buble = require('rollup-plugin-buble')
@@ -25,6 +25,9 @@ const promisify = (ctx, func = ctx) => (...args) => {
 }
 let clientCache, serverCache
 const writeFile = promisify(fs.writeFile)
+const deleteFolder = promisify(fs.remove)
+const makeFolder = promisify(fs.mkdirp)
+const copyFiles = promisify(fs.copy)
 const sass = promisify(_sass.render)
 const exec = promisify(_exec)
 
@@ -100,9 +103,10 @@ const rev = () => Promise.resolve().then(() => nodeRev({
   hash: true
 }))
 
-const clean = () => exec('rm -rf ./build && mkdir -p ./build/public')
-const polyfills = () => exec(`cp src/app/utils/polyfills.min.js build/public/`)
-const copy = () => exec(`cp -R src/app/static/. build/public/`)
+const clean = () => Promise.resolve(deleteFolder('./build'))
+const makePublicFolder = () => Promise.resolve(makeFolder('./build/public'))
+const polyfills = () => Promise.resolve(copyFiles(`src/app/utils/polyfills.min.js`, `build/public/polyfills.min.js`))
+const copy = () => Promise.resolve(copyFiles(`src/app/static/`, `./build/public/`))
 
 const tasks = new Map()
 const run = (task) => {
@@ -120,9 +124,12 @@ tasks.set('clean', clean)
 tasks.set('rev', rev)
 tasks.set('sw', sw)
 tasks.set('server', server)
+tasks.set('makePublicFolder', makePublicFolder)
 tasks.set('build', () =>
   run('clean')
-  .then(() => Promise.all([run('client'), run('css'), run('polyfills'), run('copy')]))
+  .then(() => Promise.resolve(run('makePublicFolder')))
+  .then(() => Promise.resolve(run('css')))
+  .then(() => Promise.all([run('client'), run('polyfills'), run('copy')]))
   .then(() => run('rev'))
   .then(() => Promise.all([run('server'), run('sw')]))
 )
