@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Super fast progressive web app",
   "scripts": {
-    "dev": "nodemon -e js,scss -w src -x && node build && node ./build/server.js",
+    "dev": "nodemon -e js,scss -w src -x \"node build && node ./build/server.js\"",
     "start": "node build && node ./build/server.js",
     "test": "standard"
   },
