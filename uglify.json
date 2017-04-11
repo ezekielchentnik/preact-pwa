@@ -21,7 +21,12 @@
     "if_return": true,
     "join_vars": true,
     "cascade": true,
-    "drop_console": true
+    "drop_console": true,
+    "pure_funcs": [
+      "classCallCheck",
+      "invariant",
+      "warning"
+    ]
   },
   "output": {
     "comments": false
