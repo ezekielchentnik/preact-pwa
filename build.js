@@ -16,7 +16,7 @@ const { name, version, dependencies } = require('./package')
 const swPrecache = require('sw-precache')
 const nodeRev = require('node-rev').default
 const _exec = require('child_process').exec
-const external = Object.keys(dependencies).concat(['fs', 'path'])
+const external = Object.keys(dependencies).concat(['fs'])
 const images = url({ limit: 1, publicPath: `/public/` })
 const promisify = (ctx, func = ctx) => (...args) => {
   return new Promise((resolve, reject) => {

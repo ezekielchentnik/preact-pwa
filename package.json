@@ -1,6 +1,6 @@
 {
   "name": "preact-pwa",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Super fast progressive web app",
   "scripts": {
     "dev": "nodemon -e js,scss -w src -x \"node build && node ./build/server.js\"",
@@ -9,21 +9,25 @@
   },
   "dependencies": {
     "compression": "1.6.2",
-    "cssnano": "3.10.0",
     "express": "4.14.1",
     "isomorphic-fetch": "2.2.1",
-    "node-rev": "2.0.0",
-    "node-sass": "4.5.0",
-    "nodemon": "1.11.0",
-    "optimize-js": "1.0.3",
     "preact": "7.2.0",
     "preact-redux": "1.2.0",
     "preact-render-to-string": "3.5.0",
-    "purify-css": "1.1.9",
     "redux": "3.6.0",
     "redux-reporter": "0.1.0",
     "redux-thunk": "2.2.0",
     "reselect": "2.5.4",
+    "source-map-support": "0.4.11"
+  },
+  "devDependencies": {
+    "cssnano": "3.10.0",
+    "fs-extra": "2.0.0",
+    "node-rev": "2.0.0",
+    "node-sass": "4.5.0",
+    "nodemon": "1.11.0",
+    "optimize-js": "1.0.3",
+    "purify-css": "1.1.9",
     "rollup": "0.41.1",
     "rollup-plugin-buble": "0.15.0",
     "rollup-plugin-commonjs": "7.0.0",
@@ -33,14 +37,10 @@
     "rollup-plugin-replace": "1.1.1",
     "rollup-plugin-uglify": "1.0.1",
     "rollup-plugin-url": "0.1.2",
-    "source-map-support": "0.4.11",
     "standard": "8.6.0",
     "sw-precache": "4.3.0"
   },
   "engines": {
     "node": ">=6.9.1"
-  },
-  "devDependencies": {
-    "fs-extra": "^2.0.0"
   }
 }
