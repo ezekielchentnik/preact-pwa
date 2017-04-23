@@ -10,7 +10,7 @@
   "dependencies": {
     "compression": "1.6.2",
     "express": "4.14.1",
-    "node-fetch": "^1.6.3",
+    "node-fetch": "1.6.3",
     "preact": "7.2.0",
     "preact-redux": "1.2.0",
     "preact-render-to-string": "3.5.0",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "cssnano": "3.10.0",
-    "fs-extra": "2.0.0",
+    "fs-extra-promise": "1.0.1",
     "node-rev": "2.0.0",
     "node-sass": "4.5.0",
     "nodemon": "1.11.0",

@@ -1,4 +1,4 @@
-const fs = require('fs-extra')
+const fs = require('fs-extra-promise')
 const rollup = require('rollup').rollup
 const _sass = require('node-sass')
 const buble = require('rollup-plugin-buble')
@@ -22,15 +22,8 @@ const promisify = (ctx, func = ctx) => (...args) => {
     func.apply(ctx, [...args, (err, result) => err ? reject(err) : resolve(result)])
   })
 }
-let clientCache, serverCache
-const writeFile = promisify(fs.writeFile)
-const deleteFolder = promisify(fs.remove)
-const makeFolder = promisify(fs.mkdirp)
-const copyFiles = promisify(fs.copy)
 const sass = promisify(_sass.render)
-
 const server = () => rollup({
-  cache: serverCache,
   entry: 'src/server/server.js',
   external,
   plugins: [
@@ -39,13 +32,11 @@ const server = () => rollup({
     commonjs({ extensions: [ '.js', '.json' ] }),
     buble({ jsx: 'h' })
   ]
-}).then((bundle) => {
-  serverCache = bundle
-  return bundle.write({ sourceMap: true, format: 'cjs', dest: `build/server.js` })
-})
+}).then(
+  (bundle) => bundle.write({ sourceMap: true, format: 'cjs', dest: `build/server.js` })
+)
 
 const client = () => rollup({
-  cache: clientCache,
   entry: 'src/app/entry.js',
   context: 'window',
   plugins: [
@@ -57,20 +48,19 @@ const client = () => rollup({
     uglify(uglifyConfig)
   ]
 })
-.then((bundle) => {
-  clientCache = bundle
-  return bundle.generate({ sourceMap: true, format: 'iife' })
-})
+.then(
+  (bundle) => bundle.generate({ sourceMap: true, format: 'iife' })
+)
 .then(({ code, map }) => Promise.all([
-  writeFile(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/public/bundle.js.map`),
-  writeFile(`build/public/bundle.js.map`, map.toString()),
+  fs.writeFileAsync(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/public/bundle.js.map`),
+  fs.writeFileAsync(`build/public/bundle.js.map`, map.toString()),
   images.write({ dest: 'build/public/xyz.js' })
 ]))
 
 const css = () => sass({ file: `src/app/styles/entry.scss` })
   .then(({ css }) => purifycss(['src/app/components/**/*.js'], css.toString()))
   .then((purified) => cssnano(purified, { autoprefixer: { add: true } }))
-  .then(({ css }) => writeFile(`build/public/bundle.css`, css))
+  .then(({ css }) => fs.outputFileAsync(`build/public/bundle.css`, css))
 
 const sw = () => swPrecache.write('build/public/service-worker.js', {
   cacheId: `${name}-${version}`, // include version incase we need to bump and dump
@@ -101,9 +91,8 @@ const rev = () => Promise.resolve().then(() => nodeRev({
   hash: true
 }))
 
-const clean = () => Promise.resolve(deleteFolder('./build'))
-const makePublicFolder = () => Promise.resolve(makeFolder('./build/public'))
-const copy = () => Promise.resolve(copyFiles(`src/app/static/`, `./build/public/`))
+const clean = () => fs.emptyDirAsync('./build')
+const copy = () => fs.copyAsync(`src/app/static/`, `./build/public/`)
 
 const tasks = new Map()
 const run = (task) => {
@@ -113,19 +102,16 @@ const run = (task) => {
   }, (err) => console.error(err.stack))
 }
 
+tasks.set('clean', clean)
+tasks.set('copy', copy)
 tasks.set('client', client)
 tasks.set('css', css)
-tasks.set('copy', copy)
-tasks.set('clean', clean)
 tasks.set('rev', rev)
 tasks.set('sw', sw)
 tasks.set('server', server)
-tasks.set('makePublicFolder', makePublicFolder)
 tasks.set('build', () =>
   run('clean')
-  .then(() => Promise.resolve(run('makePublicFolder')))
-  .then(() => Promise.resolve(run('css')))
-  .then(() => Promise.all([run('client'), run('copy')]))
+  .then(() => Promise.all([run('css'), run('client'), run('copy')]))
   .then(() => run('rev'))
   .then(() => Promise.all([run('server'), run('sw')]))
 )
