@@ -1,13 +1,13 @@
 {
 	"name": "Preact PWA",
 	"short_name": "Preact PWA",
-	"start_url": "./../",
+	"start_url": "/?homescreen=1",
 	"background_color": "#f1f1f1",
 	"theme_color": "#002b49",
 	"display": "standalone",
 	"orientation": "portrait",
 	"icons": [{
-	    "src": "icons/icon-512x512.png",
+	    "src": "/public/icons/icon-512x512.png",
 	    "type": "image/png",
 	    "sizes": "512x512"
 	  }]

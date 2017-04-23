@@ -23,9 +23,9 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Preact PWA">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/icons/apple-touch-icon.png">
     <meta name="theme-color" content="#002b49">
-    <link rel="manifest" href="/public/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
     <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
     <style>${inlineCss}</style>
