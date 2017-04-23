@@ -97,23 +97,24 @@ const copy = () => fs.copyAsync(`src/app/static/`, `./build/public/`)
 const tasks = new Map()
 const run = (task) => {
   const start = new Date()
-  return Promise.all([].concat(tasks.get(task)())).then(() => {
+  return tasks.get(task)().then(() => {
     console.log(`[build] '${task}' done in ${new Date().getTime() - start.getTime()}ms`)
   }, (err) => console.error(err.stack))
 }
 
-tasks.set('clean', clean)
-tasks.set('copy', copy)
-tasks.set('client', client)
-tasks.set('css', css)
-tasks.set('rev', rev)
-tasks.set('sw', sw)
-tasks.set('server', server)
-tasks.set('build', () =>
-  run('clean')
-  .then(() => Promise.all([run('css'), run('client'), run('copy')]))
-  .then(() => run('rev'))
-  .then(() => Promise.all([run('server'), run('sw')]))
-)
+tasks
+  .set('clean', clean)
+  .set('client', client)
+  .set('css', css)
+  .set('copy', copy)
+  .set('rev', rev)
+  .set('server', server)
+  .set('sw', sw)
+  .set('build', () =>
+    run('clean')
+    .then(() => Promise.all([run('client'), run('css'), run('copy')]))
+    .then(() => run('rev'))
+    .then(() => Promise.all([run('server'), run('sw')]))
+  )
 
 run(/^\w/.test(process.argv[2] || '') ? process.argv[2] : 'build')
