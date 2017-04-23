@@ -3,7 +3,7 @@ import render from 'preact-render-to-string'
 import createStore from './../../app/store/createStore'
 import App from './../../app/components/App'
 import { Router } from 'express'
-import createServerFetch from './../../app/utils/createServerFetch'
+import fetch from 'node-fetch'
 import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
 import { fetchInitialState, updateLocation } from './../../app/store/actions/ActionCreators'
@@ -46,7 +46,7 @@ const createAppShell = (store) => {
 }
 
 export default Router().get('/', (req, res) => {
-  const store = createStore(createPreloadedState(), createServerFetch())
+  const store = createStore(createPreloadedState(), fetch)
   store.dispatch(updateLocation(req.originalUrl)) // todo: sanitize
   withTimeout(
     store.dispatch(fetchInitialState()),

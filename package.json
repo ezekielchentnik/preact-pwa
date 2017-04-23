@@ -10,7 +10,7 @@
   "dependencies": {
     "compression": "1.6.2",
     "express": "4.14.1",
-    "isomorphic-fetch": "2.2.1",
+    "node-fetch": "^1.6.3",
     "preact": "7.2.0",
     "preact-redux": "1.2.0",
     "preact-render-to-string": "3.5.0",

@@ -1,14 +1,13 @@
 import loadScript from './loadScript'
 
 export default (callback) => {
-  const isGoodBrowser = (
+  if (
     'fetch' in window &&
     'Promise' in window &&
     'assign' in Object
-  )
-  if (isGoodBrowser) {
+  ) {
     callback()
   } else {
-    loadScript('/public/polyfills.min.js', callback)
+    loadScript('//cdn.polyfill.io/v2/polyfill.min.js?features=Object.assign,Promise,fetch', callback)
   }
 }

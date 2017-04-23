@@ -15,7 +15,6 @@ const optimizeJs = require('optimize-js')
 const { name, version, dependencies } = require('./package')
 const swPrecache = require('sw-precache')
 const nodeRev = require('node-rev').default
-const _exec = require('child_process').exec
 const external = Object.keys(dependencies).concat(['fs'])
 const images = url({ limit: 1, publicPath: `/public/` })
 const promisify = (ctx, func = ctx) => (...args) => {
@@ -29,7 +28,6 @@ const deleteFolder = promisify(fs.remove)
 const makeFolder = promisify(fs.mkdirp)
 const copyFiles = promisify(fs.copy)
 const sass = promisify(_sass.render)
-const exec = promisify(_exec)
 
 const server = () => rollup({
   cache: serverCache,
@@ -105,7 +103,6 @@ const rev = () => Promise.resolve().then(() => nodeRev({
 
 const clean = () => Promise.resolve(deleteFolder('./build'))
 const makePublicFolder = () => Promise.resolve(makeFolder('./build/public'))
-const polyfills = () => Promise.resolve(copyFiles(`src/app/utils/polyfills.min.js`, `build/public/polyfills.min.js`))
 const copy = () => Promise.resolve(copyFiles(`src/app/static/`, `./build/public/`))
 
 const tasks = new Map()
@@ -118,7 +115,6 @@ const run = (task) => {
 
 tasks.set('client', client)
 tasks.set('css', css)
-tasks.set('polyfills', polyfills)
 tasks.set('copy', copy)
 tasks.set('clean', clean)
 tasks.set('rev', rev)
@@ -129,7 +125,7 @@ tasks.set('build', () =>
   run('clean')
   .then(() => Promise.resolve(run('makePublicFolder')))
   .then(() => Promise.resolve(run('css')))
-  .then(() => Promise.all([run('client'), run('polyfills'), run('copy')]))
+  .then(() => Promise.all([run('client'), run('copy')]))
   .then(() => run('rev'))
   .then(() => Promise.all([run('server'), run('sw')]))
 )
