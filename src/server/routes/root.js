@@ -7,8 +7,8 @@ import fetch from 'node-fetch'
 import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
 import { fetchInitialState, updateLocation } from './../../app/store/actions/ActionCreators'
-import assets from './../../../build/assets'
 
+const assets = JSON.parse(readFileSync(`./build/assets.json`))
 const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
 const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>

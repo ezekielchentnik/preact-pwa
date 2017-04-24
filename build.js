@@ -112,9 +112,9 @@ tasks
   .set('sw', sw)
   .set('build', () =>
     run('clean')
-    .then(() => Promise.all([run('client'), run('css'), run('copy')]))
+    .then(() => Promise.all([run('client'), run('css'), run('copy'), run('server')]))
     .then(() => run('rev'))
-    .then(() => Promise.all([run('server'), run('sw')]))
+    .then(() => run('sw'))
   )
 
 run(/^\w/.test(process.argv[2] || '') ? process.argv[2] : 'build')
