@@ -16,7 +16,6 @@ const { name, version, dependencies } = require('./package')
 const swPrecache = require('sw-precache')
 const nodeRev = require('node-rev').default
 const external = Object.keys(dependencies).concat(['fs'])
-const images = url({ limit: 1, publicPath: `/public/` })
 const promisify = (ctx, func = ctx) => (...args) => {
   return new Promise((resolve, reject) => {
     func.apply(ctx, [...args, (err, result) => err ? reject(err) : resolve(result)])
@@ -27,24 +26,22 @@ const server = () => rollup({
   entry: 'src/server/server.js',
   external,
   plugins: [
-    replace({'__CLIENT__': false}),
+    replace({ '__CLIENT__': false }),
     json(),
     commonjs({ extensions: [ '.js', '.json' ] }),
-    buble({ jsx: 'h' })
+    buble({ jsx: 'h', objectAssign: 'Object.assign' })
   ]
-}).then(
-  (bundle) => bundle.write({ sourceMap: true, format: 'cjs', dest: `build/server.js` })
-)
+}).then((bundle) => bundle.write({ sourceMap: true, format: 'cjs', dest: `build/server.js` }))
 
 const client = () => rollup({
   entry: 'src/app/entry.js',
   context: 'window',
   plugins: [
-    nodeResolve({ jsnext: true, browser: true }),
+    nodeResolve({ jsnext: true }),
     commonjs({ include: ['node_modules/**'], namedExports: { 'preact-redux': ['connect', 'Provider'] } }),
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
-    images,
-    buble({ jsx: 'h' }),
+    url({ limit: 1, publicPath: `/public/` }),
+    buble({ jsx: 'h', objectAssign: 'Object.assign' }),
     uglify(uglifyConfig)
   ]
 })
@@ -53,8 +50,7 @@ const client = () => rollup({
 )
 .then(({ code, map }) => Promise.all([
   fs.writeFileAsync(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/public/bundle.js.map`),
-  fs.writeFileAsync(`build/public/bundle.js.map`, map.toString()),
-  images.write({ dest: 'build/public/xyz.js' })
+  fs.writeFileAsync(`build/public/bundle.js.map`, map.toString())
 ]))
 
 const css = () => sass({ file: `src/app/styles/entry.scss` })
@@ -84,7 +80,7 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
   }]
 })
 
-const rev = () => Promise.resolve().then(() => nodeRev({
+const rev = () => Promise.resolve(nodeRev({
   files: './build/public/bundle.css,./build/public/bundle.js',
   outputDir: './build/public/',
   file: './build/assets.json',

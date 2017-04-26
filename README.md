@@ -8,7 +8,7 @@ Live version: [https://preact-pwa.appspot.com/](https://preact-pwa.appspot.com/)
 
 ## bundle sizes & perf
 ```
-Bundle Size:            27.55 KB, Gzipped size: 9.79 KB
+Bundle Size:            28.63 KB, 9.64 KB Gzipped
 Webpage test:           A, A, A
 pagespeed:              100
 lighthouse:             100
