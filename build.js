@@ -7,24 +7,17 @@ const uglify = require('rollup-plugin-uglify')
 const nodeResolve = require('rollup-plugin-node-resolve')
 const url = require('rollup-plugin-url')
 const fs = require('fs-extra-promise')
-const _sass = require('node-sass')
-const uglifyConfig = require('./uglify')
+const sass = require('node-sass').render
 const cssnano = require('cssnano').process
 const purifycss = require('purify-css')
-const optimizeJs = require('optimize-js')
-const { name, version, dependencies } = require('./package')
-const swPrecache = require('sw-precache')
+const optimizeJs = require('optimize-js') // optimizeJs should be used & perf'd on case by case basis
+const { name, dependencies } = require('./package')
+const swPrecache = require('sw-precache').write
 const nodeRev = require('node-rev').default
-const external = Object.keys(dependencies).concat(['fs'])
-const promisify = (ctx, func = ctx) => (...args) => {
-  return new Promise((resolve, reject) => {
-    func.apply(ctx, [...args, (err, result) => err ? reject(err) : resolve(result)])
-  })
-}
-const sass = promisify(_sass.render)
+
 const server = () => rollup({
   entry: 'src/server/server.js',
-  external,
+  external: Object.keys(dependencies).concat(['fs']),
   plugins: [
     replace({ '__CLIENT__': false }),
     json(),
@@ -38,28 +31,26 @@ const client = () => rollup({
   context: 'window',
   plugins: [
     nodeResolve({ jsnext: true }),
-    commonjs({ include: ['node_modules/**'], namedExports: { 'preact-redux': ['connect', 'Provider'] } }),
+    commonjs({ namedExports: { 'preact-redux': ['connect', 'Provider'] } }),
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
     url({ limit: 1, publicPath: `/public/` }),
     buble({ jsx: 'h', objectAssign: 'Object.assign' }),
-    uglify(uglifyConfig)
+    uglify(require('./uglify'))
   ]
 })
-.then(
-  (bundle) => bundle.generate({ sourceMap: true, format: 'iife' })
-)
+.then((bundle) => bundle.generate({ sourceMap: true, format: 'iife' }))
 .then(({ code, map }) => Promise.all([
   fs.writeFileAsync(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/public/bundle.js.map`),
   fs.writeFileAsync(`build/public/bundle.js.map`, map.toString())
 ]))
 
-const css = () => sass({ file: `src/app/styles/entry.scss` })
+const css = () => new Promise((resolve, reject) => sass({ file: `src/app/styles/entry.scss` }, (err, result) => err ? reject(err) : resolve(result)))
   .then(({ css }) => purifycss(['src/app/components/**/*.js'], css.toString()))
   .then((purified) => cssnano(purified, { autoprefixer: { add: true } }))
   .then(({ css }) => fs.outputFileAsync(`build/public/bundle.css`, css))
 
-const sw = () => swPrecache.write('build/public/service-worker.js', {
-  cacheId: `${name}-${version}`, // include version incase we need to bump and dump
+const sw = () => swPrecache('build/public/sw.js', {
+  cacheId: `${name}`,
   directoryIndex: '/',
   staticFileGlobs: [
     '/',
@@ -69,7 +60,7 @@ const sw = () => swPrecache.write('build/public/service-worker.js', {
   ],
   navigateFallback: '/',
   dynamicUrlToDependencies: {
-    '/': ['./src/server/routes/root.js', './build/public/bundle.css', './build/public/bundle.js', './package.json'] // bust cache when these change
+    '/': ['./src/server/routes/root.js', './build/public/bundle.css', './build/public/bundle.js', './build/public/manifest.json', './package.json'] // bust cache when these change
   },
   skipWaiting: true,
   replacePrefix: `/public`,
@@ -84,7 +75,7 @@ const rev = () => Promise.resolve(nodeRev({
   files: './build/public/bundle.css,./build/public/bundle.js',
   outputDir: './build/public/',
   file: './build/assets.json',
-  hash: true
+  hash: true  // depends if we inlineJs, inlineCss or not
 }))
 
 const clean = () => fs.emptyDirAsync('./build')
@@ -106,8 +97,7 @@ tasks
   .set('rev', rev)
   .set('server', server)
   .set('sw', sw)
-  .set('build', () =>
-    run('clean')
+  .set('build', () => run('clean')
     .then(() => Promise.all([run('client'), run('css'), run('copy'), run('server')]))
     .then(() => run('rev'))
     .then(() => run('sw'))

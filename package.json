@@ -1,6 +1,6 @@
 {
   "name": "preact-pwa",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Super fast progressive web app",
   "scripts": {
     "dev": "nodemon -e js,scss -w src -x \"node build && node ./build/server.js\"",
