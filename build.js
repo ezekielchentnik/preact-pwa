@@ -5,7 +5,6 @@ const commonjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
 const uglify = require('rollup-plugin-uglify')
 const nodeResolve = require('rollup-plugin-node-resolve')
-const url = require('rollup-plugin-url')
 const fs = require('fs-extra-promise')
 const sass = require('node-sass').render
 const cssnano = require('cssnano').process
@@ -33,7 +32,6 @@ const client = () => rollup({
     nodeResolve({ jsnext: true }),
     commonjs({ namedExports: { 'preact-redux': ['connect', 'Provider'] } }),
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
-    url({ limit: 1, publicPath: `/public/` }),
     buble({ jsx: 'h', objectAssign: 'Object.assign' }),
     uglify(require('./uglify'))
   ]

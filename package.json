@@ -33,7 +33,6 @@
     "rollup-plugin-node-resolve": "3.0.0",
     "rollup-plugin-replace": "1.1.1",
     "rollup-plugin-uglify": "1.0.2",
-    "rollup-plugin-url": "1.1.0",
     "standard": "10.0.2",
     "sw-precache": "5.1.0"
   },
