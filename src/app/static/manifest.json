@@ -3,12 +3,12 @@
 	"short_name": "Preact PWA",
 	"start_url": "/?homescreen=1",
 	"background_color": "#f1f1f1",
-	"theme_color": "#002b49",
+	"theme_color": "#673ab8",
 	"display": "standalone",
 	"orientation": "portrait",
 	"icons": [{
-	    "src": "/public/icons/icon-512x512.png",
+	    "src": "/icons/icon-192x192.png",
 	    "type": "image/png",
-	    "sizes": "512x512"
+	    "sizes": "192x192"
 	  }]
 }

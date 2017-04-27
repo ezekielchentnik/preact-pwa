@@ -8,7 +8,8 @@ import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
 import { fetchInitialState, updateLocation } from './../../app/store/actions/ActionCreators'
 
-const assets = JSON.parse(readFileSync(`./build/assets.json`))
+const assets = JSON.parse(readFileSync(`./build/public/assets.json`))
+const manifestUrl = `/${assets['manifest.json']}`
 const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
 const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
@@ -19,13 +20,9 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Preact PWA">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Preact PWA">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/icons/apple-touch-icon.png">
-    <meta name="theme-color" content="#002b49">
-    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#673ab8">
+    <link rel="manifest" href="${manifestUrl}">
     <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
     <link rel="shortcut icon"type="image/x-icon" href="data:image/x-icon;,">
     <style>${inlineCss}</style>

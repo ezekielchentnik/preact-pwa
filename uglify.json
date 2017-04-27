@@ -1,5 +1,6 @@
 {
   "compress": {
+    "negate_iife": false,
     "unsafe_comps": true,
     "properties": true,
     "keep_fargs": false,

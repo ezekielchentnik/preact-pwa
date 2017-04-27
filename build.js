@@ -38,8 +38,8 @@ const client = () => rollup({
 })
 .then((bundle) => bundle.generate({ sourceMap: true, format: 'iife' }))
 .then(({ code, map }) => Promise.all([
-  fs.writeFileAsync(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/public/bundle.js.map`),
-  fs.writeFileAsync(`build/public/bundle.js.map`, map.toString())
+  fs.outputFileAsync(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/bundle.js.map`),
+  fs.outputFileAsync(`build/public/bundle.js.map`, map.toString())
 ]))
 
 const css = () => new Promise((resolve, reject) => sass({ file: `src/app/styles/entry.scss` }, (err, result) => err ? reject(err) : resolve(result)))
@@ -52,7 +52,7 @@ const sw = () => swPrecache('build/public/sw.js', {
   directoryIndex: '/',
   staticFileGlobs: [
     '/',
-    './build/public/manifest.json',
+    './build/public/manifest-*.json',
     // './build/public/bundle-*.{css,js}', // depends if we inlineJs, inlineCss or not
     './build/public/*.{gif,png,svg}' // will not preache /icons
   ],
@@ -61,7 +61,6 @@ const sw = () => swPrecache('build/public/sw.js', {
     '/': ['./src/server/routes/root.js', './build/public/bundle.css', './build/public/bundle.js', './build/public/manifest.json', './package.json'] // bust cache when these change
   },
   skipWaiting: true,
-  replacePrefix: `/public`,
   stripPrefix: './build/public',
   runtimeCaching: [{
     urlPattern: /\/posts/, // handle remote api call
@@ -70,9 +69,9 @@ const sw = () => swPrecache('build/public/sw.js', {
 })
 
 const rev = () => Promise.resolve(nodeRev({
-  files: './build/public/bundle.css,./build/public/bundle.js',
+  files: './build/public/**/*.*',
   outputDir: './build/public/',
-  file: './build/assets.json',
+  file: './build/public/assets.json',
   hash: true  // depends if we inlineJs, inlineCss or not
 }))
 
