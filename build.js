@@ -29,7 +29,7 @@ const client = () => rollup({
   entry: 'src/app/entry.js',
   context: 'window',
   plugins: [
-    nodeResolve({ jsnext: true }),
+    nodeResolve({ jsnext: true, browser: true }),
     commonjs({ namedExports: { 'preact-redux': ['connect', 'Provider'] } }),
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
     buble({ jsx: 'h', objectAssign: 'Object.assign' }),
