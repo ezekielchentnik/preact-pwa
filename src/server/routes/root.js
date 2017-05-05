@@ -20,7 +20,6 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#673ab8">
     <link rel="manifest" href="${manifestUrl}">
     <link rel="dns-prefetch" href="https://jsonplaceholder.typicode.com">
