@@ -11,6 +11,6 @@ app.use(strictTransportSecurity())
 app.use(express.static('build/public', { maxAge: '1y' }))
 app.use(cacheControl())
 app.use('/sw.js', express.static('build/public/sw.js'))
-app.use('*', root)
+app.use('/*', root)
 
 export default app
