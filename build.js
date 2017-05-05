@@ -1,15 +1,15 @@
 const rollup = require('rollup').rollup
 const buble = require('rollup-plugin-buble')
-const json = require('rollup-plugin-json')
 const commonjs = require('rollup-plugin-commonjs')
+const json = require('rollup-plugin-json')
+const nodeResolve = require('rollup-plugin-node-resolve')
+const optimizeJs = require('rollup-plugin-optimize-js')
 const replace = require('rollup-plugin-replace')
 const uglify = require('rollup-plugin-uglify')
-const nodeResolve = require('rollup-plugin-node-resolve')
 const fs = require('fs-extra-promise')
 const sass = require('node-sass').render
 const cssnano = require('cssnano').process
 const purifycss = require('purify-css')
-const optimizeJs = require('optimize-js') // optimizeJs should be used & perf'd on case by case basis
 const { name, dependencies } = require('./package')
 const swPrecache = require('sw-precache').write
 const nodeRev = require('node-rev').default
@@ -33,14 +33,11 @@ const client = () => rollup({
     commonjs({ namedExports: { 'preact-redux': ['connect', 'Provider'] } }),
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
     buble({ jsx: 'h', objectAssign: 'Object.assign' }),
-    uglify(require('./uglify'))
+    uglify(require('./uglify')),
+    optimizeJs()
   ]
 })
-.then((bundle) => bundle.generate({ sourceMap: true, format: 'iife' }))
-.then(({ code, map }) => Promise.all([
-  fs.outputFileAsync(`build/public/bundle.js`, optimizeJs(code) + `//# sourceMappingURL=/bundle.js.map`),
-  fs.outputFileAsync(`build/public/bundle.js.map`, map.toString())
-]))
+.then((bundle) => bundle.write({ sourceMap: true, format: 'iife', dest: `build/public/bundle.js` }))
 
 const css = () => new Promise((resolve, reject) => sass({ file: `src/app/styles/entry.scss` }, (err, result) => err ? reject(err) : resolve(result)))
   .then(({ css }) => purifycss(['src/app/components/**/*.js'], css.toString()))
