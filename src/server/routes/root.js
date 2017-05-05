@@ -29,7 +29,7 @@ const AppShell = ({ html, state }) => `<!DOCTYPE html>
   </head>
   <body>
     <div id="app">${html}</div>
-    <script>window.__STATE__=${JSON.stringify(state)}</script>
+    <script>window.__STATE__=${JSON.stringify(state).replace(/</g, '\\u003c')}</script>
     <script>${inlineJs}</script>
   </body>
 </html>`
