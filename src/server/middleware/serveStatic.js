@@ -1,7 +1,11 @@
 import { static as serveStatic } from 'express'
 
-const setHeaders = (res) => {
-  res.header('Cache-Control', 'max-age=31536000, immutable')
+const setHeaders = (res, path) => {
+  if (path.indexOf('sw.js') > -1) {
+    res.setHeader('Cache-Control', 'public, max-age=1800000, no-cache')
+  } else {
+    res.setHeader('Cache-Control', 'max-age=31536000, immutable')
+  }
 }
 
 export default () => serveStatic('build/public', { setHeaders })
