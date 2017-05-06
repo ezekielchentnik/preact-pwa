@@ -36,8 +36,5 @@
     "rollup-plugin-uglify": "1.0.2",
     "standard": "10.0.2",
     "sw-precache": "5.1.1"
-  },
-  "engines": {
-    "node": ">=6.9.1"
   }
 }
