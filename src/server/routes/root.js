@@ -48,6 +48,6 @@ export default Router().get('/', (req, res) => {
     store.dispatch(fetchInitialState()),
     100 // adjust for optimal threshold
   )
-  .catch((err) => console.log(err))
   .then(() => res.send(createAppShell(store)))
+  .catch((err) => console.log(err))
 })
