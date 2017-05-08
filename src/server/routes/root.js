@@ -15,7 +15,6 @@ const inlineJs = readFileSync(`${__dirname}/public/${assets['bundle.js']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
-    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
     <title>Preact PWA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,5 +48,7 @@ export default Router().get('/', (req, res) => {
     100 // adjust for optimal threshold
   )
   .then(() => res.send(createAppShell(store)))
-  .catch((err) => console.log(err))
+  .catch(() => {
+    // boo!
+  })
 })

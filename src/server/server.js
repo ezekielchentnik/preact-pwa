@@ -1,7 +1,7 @@
 import app from './app'
 require('source-map-support').install()
 
-const server = app.listen(8080, () => {
+const server = app.listen(3000, () => {
   console.log(`[server] app on http://localhost:${server.address().port} - ${app.settings.env}`)
 })
 
