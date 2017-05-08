@@ -8,10 +8,10 @@ import withTimeout from './../../app/utils/withTimeout'
 import { readFileSync } from 'fs'
 import { fetchInitialState, updateLocation } from './../../app/store/actions/ActionCreators'
 
-const assets = JSON.parse(readFileSync(`./build/public/assets.json`))
+const assets = JSON.parse(readFileSync(`${__dirname}/public/assets.json`))
 const manifestUrl = `/${assets['manifest.json']}`
-const inlineCss = readFileSync(`./build/public/${assets['bundle.css']}`)
-const inlineJs = readFileSync(`./build/public/${assets['bundle.js']}`)
+const inlineCss = readFileSync(`${__dirname}/public/${assets['bundle.css']}`)
+const inlineJs = readFileSync(`${__dirname}/public/${assets['bundle.js']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
 <html>
   <head>
