@@ -41,7 +41,7 @@ const createAppShell = (store) => {
   return AppShell({ html, state })
 }
 
-export default () => Router().get('/', (req, res) => {
+export default Router().get('/', (req, res) => {
   const store = createStore(createPreloadedState(), fetch)
   store.dispatch(updateLocation(req.originalUrl))
   withTimeout(
