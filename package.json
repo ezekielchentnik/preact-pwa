@@ -12,7 +12,7 @@
     "express": "4.15.2",
     "node-fetch": "1.6.3",
     "preact": "8.1.0",
-    "preact-redux": "1.2.0",
+    "preact-redux": "2.0.1",
     "preact-render-to-string": "3.6.1",
     "redux": "3.6.0",
     "redux-thunk": "2.2.0",

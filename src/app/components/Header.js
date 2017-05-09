@@ -1,7 +1,8 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
-import { connect } from 'preact-redux'
+import PreactRedux from 'preact-redux'
 import { updateLocation } from './../store/actions/ActionCreators'
 import Link from './Link'
+const { connect } = PreactRedux
 
 const Header = ({ _updateLocation }) => (
   <header className='Header'>

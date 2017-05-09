@@ -30,7 +30,7 @@ const client = () => rollup({
   context: 'window',
   plugins: [
     nodeResolve({ jsnext: true, browser: true }),
-    commonjs({ namedExports: { 'preact-redux': ['connect', 'Provider'] } }),
+    commonjs(),
     replace({ '__CLIENT__': true, 'process.env.NODE_ENV': JSON.stringify('production') }),
     buble({ jsx: 'h', objectAssign: 'Object.assign' }),
     uglify(require('./uglify')),

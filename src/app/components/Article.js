@@ -1,7 +1,8 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
-import { connect } from 'preact-redux'
+import PreactRedux from 'preact-redux'
 import { getArticle } from './../store/selectors/articles'
 import { getId } from './../store/selectors/meta'
+const { connect } = PreactRedux
 
 const Loader = () => (
   <div className='Loader page'>
