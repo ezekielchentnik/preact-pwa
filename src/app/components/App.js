@@ -2,9 +2,9 @@ import { h } from 'preact' // eslint-disable-line no-unused-vars
 import PreactRedux from 'preact-redux' // introduces 2.9kb on gzipped bundle, todo: barf, fix
 import { getPathname } from './../store/selectors/meta'
 import Header from './Header'
-import Articles from './Articles'
-import Article from './Article'
-import Splash from './Splash'
+import Posts from './Posts'
+import Post from './Post'
+import Home from './Home'
 import About from './About'
 import FourOhFour from './FourOhFour'
 const { Provider, connect } = PreactRedux
@@ -14,14 +14,14 @@ const Content = connect(
     pathname: getPathname(state)
   })
 )(({ pathname }) => { // todo: make routing more robust
-  if (pathname.indexOf('/articles/') > -1) {
-    return <Article />
-  } else if (pathname === '/articles') {
-    return <Articles />
+  if (pathname.indexOf('/blog/') > -1) {
+    return <Post />
+  } else if (pathname === '/blog') {
+    return <Posts />
   } else if (pathname === '/about') {
     return <About />
   } else if (pathname === '/') {
-    return <Splash />
+    return <Home />
   } else {
     return <FourOhFour />
   }

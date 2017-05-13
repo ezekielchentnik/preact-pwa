@@ -1,4 +1,4 @@
-import { FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR, INVALIDATE_FETCH_ARTICLES } from './../actions/ActionTypes'
+import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR, INVALIDATE_FETCH_POSTS } from './../actions/ActionTypes'
 
 export const initialState = {
   didInvalidate: false,
@@ -11,7 +11,7 @@ export const initialState = {
 
 export default (state = initialState, { type, payload, meta }) => {
   switch (type) {
-    case FETCH_ARTICLES:
+    case FETCH_POSTS:
       return Object.assign({}, state, {
         didInvalidate: false,
         isFetching: true,
@@ -19,7 +19,7 @@ export default (state = initialState, { type, payload, meta }) => {
         hasError: false,
         error: null
       })
-    case FETCH_ARTICLES_ERROR:
+    case FETCH_POSTS_ERROR:
       return Object.assign({}, state, {
         hasError: true,
         error: payload,
@@ -27,14 +27,14 @@ export default (state = initialState, { type, payload, meta }) => {
         isFetching: false,
         didInvalidate: true
       })
-    case FETCH_ARTICLES_SUCCESS:
+    case FETCH_POSTS_SUCCESS:
       return Object.assign({}, state, {
         collection: payload,
         hasFetched: true,
         isFetching: false,
         didInvalidate: false
       })
-    case INVALIDATE_FETCH_ARTICLES:
+    case INVALIDATE_FETCH_POSTS:
       return Object.assign({}, state, {
         didInvalidate: true
       })

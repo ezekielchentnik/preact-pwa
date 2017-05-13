@@ -1,7 +1,7 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
 
 export default () => (
-  <div className='Splash page'>
+  <div className='About page'>
     <div className='card'>
       <h2>About</h2>
       <strong>ezekielchentnik/preact-pwa</strong>

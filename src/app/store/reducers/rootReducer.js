@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import meta from './meta'
-import articles from './articles'
+import posts from './posts'
 
 export default combineReducers({
   meta,
-  articles
+  posts
 })
