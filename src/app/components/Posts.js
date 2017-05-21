@@ -6,7 +6,7 @@ import Link from './Link'
 const { connect } = PreactRedux
 
 const Post = ({ post, _updateLocation }) => (
-  <li className='Post card'>
+  <li className='Post'>
     <Link href={`/blog/${post.id}`} onClick={() => _updateLocation(`/blog/${post.id}`)}>
       {post.title}
     </Link>
@@ -14,13 +14,11 @@ const Post = ({ post, _updateLocation }) => (
 )
 
 const Posts = ({ posts, _updateLocation }) => (
-  <div className='page'>
-    <ul className='Posts'>
-      {posts.map((post, i) => (
-        <Post _updateLocation={_updateLocation} post={post} key={i} />
-      ))}
-    </ul>
-  </div>
+  <ul className='Posts page'>
+    {posts.map((post, i) => (
+      <Post _updateLocation={_updateLocation} post={post} key={i} />
+    ))}
+  </ul>
 )
 
 export default connect(
