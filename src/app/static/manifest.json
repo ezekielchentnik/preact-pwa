@@ -1,7 +1,7 @@
 {
 	"name": "Preact PWA",
 	"short_name": "Preact PWA",
-	"start_url": "/?homescreen=1",
+	"start_url": "/",
 	"background_color": "#f1f1f1",
 	"theme_color": "#673ab8",
 	"display": "standalone",

@@ -14,7 +14,7 @@ const manifestUrl = `/${assets['manifest.json']}`
 const inlineCss = readFileSync(`${__dirname}/public/${assets['bundle.css']}`)
 const inlineJs = readFileSync(`${__dirname}/public/${assets['bundle.js']}`)
 const AppShell = ({ html, state }) => `<!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
     <title>Preact PWA</title>
