@@ -1,10 +1,10 @@
-# [preact-pwa](https://preact-pwa-gbrdzyhugl.now.sh)
+# [preact-pwa](https://preact-pwa-yfxiijbzit.now.sh/)
 
 A `Super fast progressive web app` with a small footprint & minimal dependencies.  
 
 Features universal rendering, redux, state-driven routing, preact, & service workers.  Crunched & optimized with rollup, buble, optimize-js, & purify-css.
 
-Live version (zeit): [https://preact-pwa-gbrdzyhugl.now.sh](https://preact-pwa-gbrdzyhugl.now.sh)
+Live version (zeit): [https://preact-pwa-yfxiijbzit.now.sh/](https://preact-pwa-yfxiijbzit.now.sh/)
 
 ## bundle sizes & performance
 ```
