@@ -1,6 +1,6 @@
 import { h } from 'preact' // eslint-disable-line no-unused-vars
 import PreactRedux from 'preact-redux'
-import { updateLocation } from './../store/actions/ActionCreators'
+import { updateLocation } from './../store/actions/meta'
 import Link from './Link'
 const { connect } = PreactRedux
 

@@ -1,11 +1,9 @@
-import {
-  FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR,
-  UPDATE_LOCATION
-} from './ActionTypes'
 import { getShouldFetchPosts, getPosts } from './../selectors/posts'
-import { getUrl } from './../selectors/meta'
 
-const POSTS_API_URL = 'https://jsonplaceholder.typicode.com/posts'
+export const FETCH_POSTS = 'api/FETCH_POSTS'
+export const FETCH_POSTS_SUCCESS = 'api/FETCH_POSTS_SUCCESS'
+export const FETCH_POSTS_ERROR = 'api/FETCH_POSTS_ERROR'
+export const INVALIDATE_FETCH_POSTS = 'api/INVALIDATE_FETCH_POSTS'
 
 const checkStatus = (response) => {
   if (!response.ok) { // status in the range 200-299 or not
@@ -22,7 +20,7 @@ const errorAction = (type, error) => ({ type, payload: error, error: true })
 
 const fetchPosts = () => (dispatch, getState, fetchMethod) => {
   dispatch(startAction(FETCH_POSTS))
-  return fetchMethod(POSTS_API_URL)
+  return fetchMethod('https://jsonplaceholder.typicode.com/posts')
   .then(checkStatus)
   .then(parseJSON)
   .then((json) => dispatch(successAction(FETCH_POSTS_SUCCESS, json)))
@@ -32,20 +30,4 @@ const fetchPosts = () => (dispatch, getState, fetchMethod) => {
 export const fetchPostsIfNeeded = () => (dispatch, getState) => {
   const state = getState()
   return getShouldFetchPosts(state) ? dispatch(fetchPosts()) : Promise.resolve(getPosts(state))
-}
-
-export const fetchInitialState = () => (dispatch, getState) => Promise.all([
-  dispatch(fetchPostsIfNeeded())
-])
-
-export const updateLocation = (newUrl) => (dispatch, getState) => {
-  if (newUrl === getUrl(getState())) {
-    return
-  }
-  dispatch({
-    type: UPDATE_LOCATION,
-    payload: {
-      url: newUrl
-    }
-  })
 }

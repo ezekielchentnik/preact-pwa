@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR, INVALIDATE_FETCH_POSTS } from './../actions/ActionTypes'
+import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR, INVALIDATE_FETCH_POSTS } from './../actions/posts'
 
 export const initialState = {
   didInvalidate: false,

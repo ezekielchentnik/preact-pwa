@@ -1,7 +1,8 @@
 import { h, render } from 'preact' // eslint-disable-line no-unused-vars
 import App from './components/App'
 import createStore from './store/createStore'
-import { fetchInitialState, updateLocation } from './store/actions/ActionCreators'
+import { fetchPostsIfNeeded } from './store/actions/posts'
+import { updateLocation } from './store/actions/meta'
 import { getUrl } from './store/selectors/meta'
 import ensurePolyfills from './utils/ensurePolyfills'
 
@@ -19,6 +20,6 @@ ensurePolyfills(() => {
     }
   })
   store.dispatch(updateLocation(window.location.pathname + window.location.search))
-  store.dispatch(fetchInitialState())
+  store.dispatch(fetchPostsIfNeeded())
   render(<App store={store} />, app, app.lastChild)
 })

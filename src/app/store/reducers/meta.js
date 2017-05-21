@@ -1,7 +1,6 @@
-import { UPDATE_LOCATION } from './../actions/ActionTypes'
+import { UPDATE_LOCATION } from './../actions/meta'
 
 export const initialState = {
-  title: 'Preact PWA',
   url: '/'
 }
 
