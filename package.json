@@ -26,7 +26,7 @@
     "node-rev": "2.0.0",
     "node-sass": "4.5.2",
     "nodemon": "1.11.0",
-    "purify-css": "1.1.9",
+    "purify-css": "1.2.5",
     "rollup": "0.41.6",
     "rollup-plugin-buble": "0.15.0",
     "rollup-plugin-commonjs": "8.0.2",
